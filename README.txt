@@ -233,7 +233,7 @@ ALTER TABLE IF EXISTS public.navigazione
 
 CREATE TABLE IF NOT EXISTS public.passeggero
 (
-    idpasseggero integer NOT NULL,
+    idpasseggero integer NOT NULL DEFAULT nextval('sequenza_id_passeggero'::regclass),
     nome character varying(50) COLLATE pg_catalog."default" NOT NULL,
     cognome character varying(50) COLLATE pg_catalog."default" NOT NULL,
     datanascita date NOT NULL,
@@ -244,17 +244,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.passeggero
     OWNER to postgres;
-
--- Trigger: incrementa_id_passeggero
-
--- DROP TRIGGER IF EXISTS incrementa_id_passeggero ON public.passeggero;
-
-CREATE OR REPLACE TRIGGER incrementa_id_passeggero
-    BEFORE INSERT
-    ON public.passeggero
-    FOR EACH ROW
-    EXECUTE FUNCTION public.incrementa_id_passeggero();
-
 
 
 CREATE TABLE IF NOT EXISTS public.prenotazione
@@ -405,13 +394,13 @@ begin
 		rand_numb := floor(random() * 1000000) :: integer + 1;
 		
 		-- queste istruzioni servono a calcolare la differenza tra una data ed un'altra.
-		-- viene utilizzata la funzione extract per estrarre l'anno, il mese o il giorno da una data
+		-- viene utilizzata la funzione date_part per estrarre l'anno, il mese o il giorno da una data
 		-- e successivamente la funzione age calcola la differenza (e quindi l'eta) tra i due valori.
-		select extract(year from age(current_date, data_pass)) into age_pass;
+		select date_part('year', age(current_date, data_pass)) into age_pass;
 		
-		select extract(year from age(data_corsa, current_date)) into tempo_year;
-		select extract(month from age(data_corsa, current_date)) into tempo_month;
-		select extract(day from age(data_corsa, current_date)) into tempo_day;
+		select date_part('year', age(data_corsa, current_date)) into tempo_year;
+		select date_part('month', age(data_corsa, current_date)) into tempo_month;
+		select date_part('day', age(data_corsa, current_date)) into tempo_day;
 
 		-- se l'eta è minore di 18 anni, verrà effettuato un inserimento in bigliettoridotto
 		if(age_pass < 18) then
@@ -456,7 +445,6 @@ ALTER FUNCTION public.after_insert_prenotazione()
 COMMENT ON FUNCTION public.after_insert_prenotazione()
     IS '-- funzione che, dopo l''inserimento di una tupla in prenotazione, attiva il trigger che permette di aggiungere una tupla corrispondente in bigliettoridotto se l''età è minore di 18, oppure in bigliettointero se l''età è maggiore di 18. Questa funzione inoltre permette di indicare l''eventuale sovrapprezzo della prenotazione o il sovrapprezzo dei bagagli, e di diminuire la disponibilità nella tabella corsa';
 
-
 CREATE OR REPLACE FUNCTION public.aggiungi_navigazione()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -487,7 +475,6 @@ $BODY$;
 
 ALTER FUNCTION public.aggiungi_navigazione()
     OWNER TO postgres;
-
 
 CREATE OR REPLACE FUNCTION public.diminuisci_disponibilita()
     RETURNS trigger
@@ -537,7 +524,6 @@ $BODY$;
 
 ALTER FUNCTION public.diminuisci_disponibilita_auto()
     OWNER TO postgres;
-
 
 CREATE OR REPLACE FUNCTION public.elimina_prenotazione()
     RETURNS trigger
@@ -592,7 +578,6 @@ $BODY$;
 
 ALTER FUNCTION public.elimina_prenotazione()
     OWNER TO postgres;
-
 
 CREATE OR REPLACE FUNCTION public.imposta_disponibilita()
     RETURNS trigger
@@ -652,26 +637,6 @@ $BODY$;
 ALTER FUNCTION public.imposta_disponibilita()
     OWNER TO postgres;
 
-
-CREATE OR REPLACE FUNCTION public.incrementa_id_passeggero()
-    RETURNS trigger
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE NOT LEAKPROOF
-AS $BODY$
- 
-begin
-
-	new.idpasseggero = nextval('sequenza_id_passeggero'); --funzione che restituisce il prossimo elemento nella sequenza
-	return new;
-	
-end;
-$BODY$;
-
-ALTER FUNCTION public.incrementa_id_passeggero()
-    OWNER TO postgres;
-
-
 CREATE OR REPLACE FUNCTION public.incrementa_numero_natanti()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -690,7 +655,6 @@ $BODY$;
 
 ALTER FUNCTION public.incrementa_numero_natanti()
     OWNER TO postgres;
-
 
 CREATE OR REPLACE FUNCTION public.modifica_ritardo()
     RETURNS trigger
@@ -734,7 +698,6 @@ $BODY$;
 ALTER FUNCTION public.modifica_ritardo()
     OWNER TO postgres;
 
-
 CREATE OR REPLACE FUNCTION public.prezzo_bagaglio()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -759,7 +722,6 @@ $BODY$;
 
 ALTER FUNCTION public.prezzo_bagaglio()
     OWNER TO postgres;
-
 
 CREATE OR REPLACE FUNCTION public.setta_sovrapprezzoprenotazione()
     RETURNS trigger
@@ -803,7 +765,6 @@ $BODY$;
 ALTER FUNCTION public.setta_sovrapprezzoprenotazione()
     OWNER TO postgres;
 
-
 CREATE OR REPLACE FUNCTION public.verifica_disponibilita_auto()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -822,19 +783,30 @@ begin
 
 	select disponibilitaauto into disponibilita_auto
 	from corsa 
-	where idcorsa = new.idcorsa;
--- la funzione controlla anzitutto se ci sono ancora posti auto disponibili
-	if disponibilita_auto <= 0 then 
-		raise exception 'I posti auto sono esauriti.';
-	end if;
-	
+	where idcorsa = new.idcorsa and idcorsa in (select idcorsa
+											   from navigazione
+											   where codnatante in (select codnatante
+																   from natante
+																   where tiponatante = 'traghetto'));
+
 	if new.auto = true and tipo <> 'traghetto' then
 		update prenotazione
 		set auto = false
 		where idcorsa = new.idcorsa;
--- nel caso una prenotazione sia fatta su un tipo di nave che non ha posti auto, c'è un'exception:
+		
+		-- nel caso una prenotazione sia fatta su un tipo di nave che non ha posti auto, c'è un'exception:
 		raise exception 'Impossibile aggiungere l''auto, perchè l''imbarcazione non lo permette';
-
+		
+	elsif new.auto = false then
+	
+		update prenotazione
+		set auto = false
+		where idcorsa = new.idcorsa;
+		
+	end if;
+	
+	if disponibilita_auto <= 0 then
+		raise exception 'I posti auto sono esauriti.';
 	end if;
 	
 	return new;
@@ -843,7 +815,6 @@ $BODY$;
 
 ALTER FUNCTION public.verifica_disponibilita_auto()
     OWNER TO postgres;
-
 
 --Per completezza, sono presenti anche le SEQUENCE relative all'Idprenotazione e all'Idpasseggero, 
 --primary key delle rispettive tuple:
