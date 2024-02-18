@@ -9,9 +9,11 @@ mentre path è il percorso dele file SQL;
  5.5 Qualora psql non dovesse funzionare, utilizzare invece il comando "pg_dump" con la sintassi: 
      "pg_dump -h localhost -U nome_utente -d nome_database -F c -f /percorso/destinazione/dump_personalizzato.backup";
 6. In questo modo si sarà importato il DB nella sua interezza, già popolato;
-In caso di eventuali errori, questo readme conterrà tutto il codice - commentato - così che nel peggiore dei casi lo si possa eseguire su SQL.
+In caso di eventuali errori, questo readme conterrà tutto il codice - commentato - della struttura del database, così che nel peggiore dei casi lo si possa eseguire su Postgre, mentre il popolamento è contenuto in un ulteriore file SQL.
 
---Creazione Schema: 
+-- SCHEMA: public
+
+-- DROP SCHEMA IF EXISTS public ;
 
 CREATE SCHEMA IF NOT EXISTS public
     AUTHORIZATION pg_database_owner;
@@ -22,46 +24,6 @@ COMMENT ON SCHEMA public
 GRANT USAGE ON SCHEMA public TO PUBLIC;
 
 GRANT ALL ON SCHEMA public TO pg_database_owner;
-
---Creazione delle 10 tuple con relativi trigger:
-
-CREATE TABLE IF NOT EXISTS public.bigliettoridotto
-(
-    codbigliettor integer NOT NULL,
-    prezzo double precision DEFAULT 10.50,
-    nominativo character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    idpasseggero integer,
-    CONSTRAINT bigliettoridotto_pkey PRIMARY KEY (codbigliettor),
-    CONSTRAINT idpasseggero FOREIGN KEY (idpasseggero)
-        REFERENCES public.passeggero (idpasseggero) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.bigliettoridotto
-    OWNER to postgres;
-
-
-CREATE TABLE IF NOT EXISTS public.bigliettoridotto
-(
-    codbigliettor integer NOT NULL,
-    prezzo double precision DEFAULT 10.50,
-    nominativo character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    idpasseggero integer,
-    CONSTRAINT bigliettoridotto_pkey PRIMARY KEY (codbigliettor),
-    CONSTRAINT idpasseggero FOREIGN KEY (idpasseggero)
-        REFERENCES public.passeggero (idpasseggero) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.bigliettoridotto
-    OWNER to postgres;
-
 
 CREATE TABLE IF NOT EXISTS public.cadenzagiornaliera
 (
@@ -79,7 +41,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.cadenzagiornaliera
     OWNER to postgres;
-
 
 CREATE TABLE IF NOT EXISTS public.compagniadinavigazione
 (
@@ -99,25 +60,65 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.compagniadinavigazione
     OWNER to postgres;
 
+CREATE TABLE IF NOT EXISTS public.tratta
+(
+    idtratta integer NOT NULL DEFAULT nextval('id_tratta_sequence'::regclass),
+    cittapartenza character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    cittaarrivo character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    scalo character varying(30) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    nomecompagnia character varying(30) COLLATE pg_catalog."default",
+    nomecadenzagiornaliera character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT tratta_pkey PRIMARY KEY (idtratta),
+    CONSTRAINT tratta_nomecadenzagiornaliera_fkey FOREIGN KEY (nomecadenzagiornaliera)
+        REFERENCES public.cadenzagiornaliera (nomecadenzagiornaliera) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT tratta_nomecompagnia_fkey FOREIGN KEY (nomecompagnia)
+        REFERENCES public.compagniadinavigazione (nomecompagnia) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tratta
+    OWNER to postgres;
+
+-- Trigger: aggiungi_navigazione
+
+-- DROP TRIGGER IF EXISTS aggiungi_navigazione ON public.tratta;
+
+CREATE OR REPLACE TRIGGER aggiungi_navigazione
+    AFTER INSERT
+    ON public.tratta
+    FOR EACH ROW
+    EXECUTE FUNCTION public.aggiungi_navigazione();
+
+-- Trigger: insert_into_corsa
+
+-- DROP TRIGGER IF EXISTS insert_into_corsa ON public.tratta;
+
+CREATE OR REPLACE TRIGGER insert_into_corsa
+    AFTER INSERT
+    ON public.tratta
+    FOR EACH ROW
+    EXECUTE FUNCTION public.insert_into_corsa();
+
+-- Table: public.corsa
+
+-- DROP TABLE IF EXISTS public.corsa;
 
 CREATE TABLE IF NOT EXISTS public.corsa
 (
-    idcorsa character varying(15) COLLATE pg_catalog."default" NOT NULL,
-    nomecompagnia character varying(30) COLLATE pg_catalog."default",
-    cittapartenza character varying(30) COLLATE pg_catalog."default" NOT NULL,
-    cittaarrivo character varying(30) COLLATE pg_catalog."default" NOT NULL,
-    scalo character varying(30) COLLATE pg_catalog."default",
+    idcorsa integer NOT NULL DEFAULT nextval('id_corsa_sequence'::regclass),
     ritardo character varying(4) COLLATE pg_catalog."default",
-    disponibilita integer,
-    nomecadenzagiornaliera character varying(100) COLLATE pg_catalog."default",
     disponibilitaauto integer,
+    disponibilitapasseggero integer,
+    giorno date,
+    idtratta integer,
     CONSTRAINT corsa_pkey PRIMARY KEY (idcorsa),
-    CONSTRAINT corsa_nomecompagnia_fkey FOREIGN KEY (nomecompagnia)
-        REFERENCES public.compagniadinavigazione (nomecompagnia) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT nomecadenzagiornaliera FOREIGN KEY (nomecadenzagiornaliera)
-        REFERENCES public.cadenzagiornaliera (nomecadenzagiornaliera) MATCH SIMPLE
+    CONSTRAINT idtratta FOREIGN KEY (idtratta)
+        REFERENCES public.tratta (idtratta) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
@@ -126,16 +127,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.corsa
     OWNER to postgres;
-
--- Trigger: aggiungi_navigazione
-
--- DROP TRIGGER IF EXISTS aggiungi_navigazione ON public.corsa;
-
-CREATE OR REPLACE TRIGGER aggiungi_navigazione
-    AFTER INSERT
-    ON public.corsa
-    FOR EACH ROW
-    EXECUTE FUNCTION public.aggiungi_navigazione();
 
 -- Trigger: imposta_disponibilita
 
@@ -157,7 +148,55 @@ CREATE OR REPLACE TRIGGER modifica_ritardo
     FOR EACH ROW
     EXECUTE FUNCTION public.modifica_ritardo();
 
+CREATE TABLE IF NOT EXISTS public.passeggero
+(
+    idpasseggero integer NOT NULL DEFAULT nextval('sequenza_id_passeggero'::regclass),
+    nome character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    cognome character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    datanascita date NOT NULL,
+    CONSTRAINT passeggero_pkey PRIMARY KEY (idpasseggero)
+)
 
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.passeggero
+    OWNER to postgres;
+
+CREATE TABLE IF NOT EXISTS public.bigliettointero
+(
+    codbigliettoi integer NOT NULL,
+    prezzo double precision DEFAULT 15.50,
+    nominativo character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    idpasseggero integer,
+    CONSTRAINT bigliettointero_pkey PRIMARY KEY (codbigliettoi),
+    CONSTRAINT idpasseggero FOREIGN KEY (idpasseggero)
+        REFERENCES public.passeggero (idpasseggero) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.bigliettointero
+    OWNER to postgres;
+
+CREATE TABLE IF NOT EXISTS public.bigliettoridotto
+(
+    codbigliettor integer NOT NULL,
+    prezzo double precision DEFAULT 10.50,
+    nominativo character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    idpasseggero integer,
+    CONSTRAINT bigliettoridotto_pkey PRIMARY KEY (codbigliettor),
+    CONSTRAINT idpasseggero FOREIGN KEY (idpasseggero)
+        REFERENCES public.passeggero (idpasseggero) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.bigliettoridotto
+    OWNER to postgres;
 
 CREATE TABLE IF NOT EXISTS public.indirizzosocial
 (
@@ -174,8 +213,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.indirizzosocial
     OWNER to postgres;
-
-
 
 CREATE TABLE IF NOT EXISTS public.natante
 (
@@ -208,19 +245,16 @@ CREATE OR REPLACE TRIGGER incrementa_numero_natanti
     FOR EACH ROW
     EXECUTE FUNCTION public.incrementa_numero_natanti();
 
-
-
-CREATE TABLE IF NOT EXISTS public.navigazione
 (
-    idcorsa character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    idtratta integer NOT NULL,
     codnatante character varying(15) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT navigazione_pkey PRIMARY KEY (idcorsa, codnatante),
+    CONSTRAINT navigazione_pkey PRIMARY KEY (idtratta, codnatante),
     CONSTRAINT navigazione_codnatante_fkey FOREIGN KEY (codnatante)
         REFERENCES public.natante (codnatante) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT navigazione_idcorsa_fkey FOREIGN KEY (idcorsa)
-        REFERENCES public.corsa (idcorsa) MATCH SIMPLE
+    CONSTRAINT navigazione_idtratta_fkey FOREIGN KEY (idtratta)
+        REFERENCES public.tratta (idtratta) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
@@ -230,118 +264,38 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.navigazione
     OWNER to postgres;
 
-
-CREATE TABLE IF NOT EXISTS public.passeggero
+CREATE TABLE IF NOT EXISTS public.indirizzosocial
 (
-    idpasseggero integer NOT NULL DEFAULT nextval('sequenza_id_passeggero'::regclass),
-    nome character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    cognome character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    datanascita date NOT NULL,
-    CONSTRAINT passeggero_pkey PRIMARY KEY (idpasseggero)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.passeggero
-    OWNER to postgres;
-
-
-CREATE TABLE IF NOT EXISTS public.prenotazione
-(
-    idcorsa character varying(15) COLLATE pg_catalog."default" NOT NULL,
-    idpasseggero integer NOT NULL,
-    sovrapprezzoprenotazione double precision DEFAULT 3.00,
-    sovrapprezzobagagli double precision,
-    idprenotazione integer NOT NULL DEFAULT nextval('prenotazione_idprenotazione_seq'::regclass),
-    peso_bagaglio double precision,
-    auto boolean DEFAULT false,
-    CONSTRAINT prenotazione_pkey PRIMARY KEY (idprenotazione),
-    CONSTRAINT prenotazione_idcorsa_fkey FOREIGN KEY (idcorsa)
-        REFERENCES public.corsa (idcorsa) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT prenotazione_idpasseggero_fkey FOREIGN KEY (idpasseggero)
-        REFERENCES public.passeggero (idpasseggero) MATCH SIMPLE
+    indirizzo character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    nomecompagnia character varying(50) COLLATE pg_catalog."default",
+    CONSTRAINT indirizzosocial_pkey PRIMARY KEY (indirizzo),
+    CONSTRAINT indirizzosocial_nomecompagnia_fkey FOREIGN KEY (nomecompagnia)
+        REFERENCES public.compagniadinavigazione (nomecompagnia) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.prenotazione
+ALTER TABLE IF EXISTS public.indirizzosocial
     OWNER to postgres;
 
--- Trigger: after_insert_prenotazione
+CREATE TABLE IF NOT EXISTS public.indirizzosocial
+(
+    indirizzo character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    nomecompagnia character varying(50) COLLATE pg_catalog."default",
+    CONSTRAINT indirizzosocial_pkey PRIMARY KEY (indirizzo),
+    CONSTRAINT indirizzosocial_nomecompagnia_fkey FOREIGN KEY (nomecompagnia)
+        REFERENCES public.compagniadinavigazione (nomecompagnia) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
 
--- DROP TRIGGER IF EXISTS after_insert_prenotazione ON public.prenotazione;
+TABLESPACE pg_default;
 
-CREATE OR REPLACE TRIGGER after_insert_prenotazione
-    AFTER INSERT
-    ON public.prenotazione
-    FOR EACH ROW
-    EXECUTE FUNCTION public.after_insert_prenotazione();
+ALTER TABLE IF EXISTS public.indirizzosocial
+    OWNER to postgres;
 
--- Trigger: diminuisci_disponibilita
-
--- DROP TRIGGER IF EXISTS diminuisci_disponibilita ON public.prenotazione;
-
-CREATE OR REPLACE TRIGGER diminuisci_disponibilita
-    AFTER INSERT
-    ON public.prenotazione
-    FOR EACH ROW
-    EXECUTE FUNCTION public.diminuisci_disponibilita();
-
--- Trigger: diminuisci_disponibilita_auto
-
--- DROP TRIGGER IF EXISTS diminuisci_disponibilita_auto ON public.prenotazione;
-
-CREATE OR REPLACE TRIGGER diminuisci_disponibilita_auto
-    AFTER INSERT
-    ON public.prenotazione
-    FOR EACH ROW
-    EXECUTE FUNCTION public.diminuisci_disponibilita_auto();
-
--- Trigger: elimina_prenotazione
-
--- DROP TRIGGER IF EXISTS elimina_prenotazione ON public.prenotazione;
-
-CREATE OR REPLACE TRIGGER elimina_prenotazione
-    AFTER DELETE
-    ON public.prenotazione
-    FOR EACH ROW
-    EXECUTE FUNCTION public.elimina_prenotazione();
-
--- Trigger: prezzo_bagaglio
-
--- DROP TRIGGER IF EXISTS prezzo_bagaglio ON public.prenotazione;
-
-CREATE OR REPLACE TRIGGER prezzo_bagaglio
-    BEFORE INSERT
-    ON public.prenotazione
-    FOR EACH ROW
-    EXECUTE FUNCTION public.prezzo_bagaglio();
-
--- Trigger: setta_sovrapprezzoprenotazione
-
--- DROP TRIGGER IF EXISTS setta_sovrapprezzoprenotazione ON public.prenotazione;
-
-CREATE OR REPLACE TRIGGER setta_sovrapprezzoprenotazione
-    BEFORE INSERT
-    ON public.prenotazione
-    FOR EACH ROW
-    EXECUTE FUNCTION public.setta_sovrapprezzoprenotazione();
-
--- Trigger: verifica_disponibilita_auto
-
--- DROP TRIGGER IF EXISTS verifica_disponibilita_auto ON public.prenotazione;
-
-CREATE OR REPLACE TRIGGER verifica_disponibilita_auto
-    BEFORE INSERT
-    ON public.prenotazione
-    FOR EACH ROW
-    EXECUTE FUNCTION public.verifica_disponibilita_auto();
-
---Creazione delle funzioni:
 
 CREATE OR REPLACE FUNCTION public.after_insert_prenotazione()
     RETURNS trigger
@@ -363,7 +317,7 @@ declare
 	tempo_day integer;
 begin
 	
-	select disponibilita into disponibilita_corsa 
+	select disponibilitapasseggero into disponibilita_corsa 
 	from corsa 
 	where idcorsa = new.idcorsa;
 	
@@ -383,8 +337,10 @@ begin
 		select datainizio into data_corsa 
 		from cadenzagiornaliera
 		where nomecadenzagiornaliera in (select nomecadenzagiornaliera 
-										 from corsa
-										 where idcorsa = new.idcorsa);
+										 from tratta
+										 where idtratta in (select idtratta
+														   from corsa
+														   where idcorsa = new.idcorsa));
 		
 		-- la funzione concat concatena una stringa ad un'altra separata da uno spazio
 		result_string := concat(nome_pass, ' ', cognome_pass);
@@ -445,6 +401,7 @@ ALTER FUNCTION public.after_insert_prenotazione()
 COMMENT ON FUNCTION public.after_insert_prenotazione()
     IS '-- funzione che, dopo l''inserimento di una tupla in prenotazione, attiva il trigger che permette di aggiungere una tupla corrispondente in bigliettoridotto se l''età è minore di 18, oppure in bigliettointero se l''età è maggiore di 18. Questa funzione inoltre permette di indicare l''eventuale sovrapprezzo della prenotazione o il sovrapprezzo dei bagagli, e di diminuire la disponibilità nella tabella corsa';
 
+
 CREATE OR REPLACE FUNCTION public.aggiungi_navigazione()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -463,7 +420,7 @@ begin
     LIMIT 1;
 	
 	IF cod_natante is not null THEN
-		INSERT INTO navigazione VALUES (NEW.idcorsa, cod_natante);
+		INSERT INTO navigazione VALUES (NEW.idtratta, cod_natante);
 	ELSE
 		RAISE EXCEPTION 'Nessun natante trovato per la compagnia di cui si vuole inserire la corsa';
 	END IF;
@@ -476,6 +433,8 @@ $BODY$;
 ALTER FUNCTION public.aggiungi_navigazione()
     OWNER TO postgres;
 
+
+
 CREATE OR REPLACE FUNCTION public.diminuisci_disponibilita()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -485,26 +444,8 @@ AS $BODY$
 begin
 	
 	UPDATE corsa
-    SET disponibilita = disponibilita - 1
+    SET disponibilitapasseggero = disponibilitapasseggero - 1
     WHERE idcorsa = NEW.idcorsa;
-
-    RETURN NEW;
-		
-end;
-$BODY$;
-
-ALTER FUNCTION public.diminuisci_disponibilita()
-    OWNER TO postgres;
-
-CREATE OR REPLACE FUNCTION public.diminuisci_disponibilita_auto()
-    RETURNS trigger
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE NOT LEAKPROOF
-AS $BODY$
-declare
-begin
-	
 	
 	if new.auto = false then
 		update corsa
@@ -516,13 +457,13 @@ begin
 		where idcorsa = new.idcorsa;
 	end if;
 		
+
+    RETURN NEW;
 		
-	
-	return new;
 end;
 $BODY$;
 
-ALTER FUNCTION public.diminuisci_disponibilita_auto()
+ALTER FUNCTION public.diminuisci_disponibilita()
     OWNER TO postgres;
 
 CREATE OR REPLACE FUNCTION public.elimina_prenotazione()
@@ -560,11 +501,11 @@ begin
 	-- aggiornamento della disponibilita dopo la cancellazione di una prenotazione
 	if old.auto = false then
 		update corsa
-		set disponibilita = disponibilita + 1
+		set disponibilitapasseggero = disponibilitapasseggero + 1
 		where idcorsa = old.idcorsa;
 	else 
 		update corsa
-		set disponibilita = disponibilita + 1
+		set disponibilitapasseggero = disponibilitapasseggero + 1
 		where idcorsa = old.idcorsa;
 		
 		update corsa 
@@ -591,26 +532,21 @@ declare
 	tipo_natante varchar(50); --tipo del natante
 begin
 	
-	-- Seleziona la capienza passeggeri e il tipo del natante associato alla corsa
-	select capienzapasseggeri, tiponatante into capienzap, tipo_natante
+	-- Seleziona la capienza passeggeri, la capienza automezzi e il tipo del natante associato alla corsa
+	select capienzapasseggeri, tiponatante, capienzaautomezzi into capienzap, tipo_natante, capienzaa
 	from natante
 	where codnatante in (select codnatante
 						from navigazione
-						where idcorsa = new.idcorsa);
-	
-	-- Seleziona la capienza passeggeri del natante associato alla corsa
-	select capienzaautomezzi into capienzaa
-	from natante
-	where codnatante in (select codnatante
-						from navigazione
-						where idcorsa = new.idcorsa);
+						where idtratta in (select idtratta 
+										  from corsa
+										  where idcorsa = new.idcorsa));
 	
 	-- Verifica il tipo del natante e imposta la disponibilità della corsa di conseguenza
 	if tipo_natante = 'traghetto' then
 	
         -- Se il natante è un traghetto, la disponibilità è data dalla somma della capienza passeggeri e automezzi
 		update corsa 
-		set disponibilita = capienzap
+		set disponibilitapasseggero = capienzap
 		where idcorsa = new.idcorsa;
 		
 		update corsa 
@@ -621,7 +557,7 @@ begin
 	
         -- Altrimenti, la disponibilità è data solo dalla capienza passeggeri
 		update corsa
-		set disponibilita = capienzap
+		set disponibilitapasseggero = capienzap
 		where idcorsa = new.idcorsa;
 		
 		update corsa 
@@ -656,6 +592,90 @@ $BODY$;
 ALTER FUNCTION public.incrementa_numero_natanti()
     OWNER TO postgres;
 
+CREATE OR REPLACE FUNCTION public.insert_into_corsa()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE
+    capienzap INTEGER; --capienza passeggeri
+    disponibilitapasseggero integer;
+    disponibilitaauto integer;
+    capienzaa INTEGER; --capienza automezzi
+    tipo_natante varchar(50); --tipo del natante
+	giornosett cadenzagiornaliera.nomecadenzagiornaliera%type;
+	giorni text[];
+	giorno text;
+    giorno_numero integer;
+	data_giorno date;
+	day_of integer;
+
+    
+BEGIN
+    -- Seleziona la capienza passeggeri, la capienza automezzi e il tipo del natante associato alla corsa
+    select capienzapasseggeri, tiponatante, capienzaautomezzi into capienzap, tipo_natante, capienzaa
+    from natante
+    where codnatante in (select codnatante
+                        from navigazione
+                        where idtratta = new.idtratta);
+
+    if tipo_natante = 'traghetto' then
+        -- Se il natante è un traghetto, la disponibilità è data dalla somma della capienza passeggeri e automezzi
+        disponibilitapasseggero = capienzap;
+        disponibilitaauto = capienzaa;
+    else
+        -- Altrimenti, la disponibilità è data solo dalla capienza passeggeri
+        disponibilitapasseggero = capienzap;
+        disponibilitaauto = 0;
+    end if;
+    
+	select giornosettimanale into giornosett
+	from cadenzagiornaliera
+	where nomecadenzagiornaliera = new.nomecadenzagiornaliera;
+	
+	giorni := string_to_array(giornosett, ', ');	
+	
+	-- questo loop assegna ad ogni iterazione il valore numerico del giorno della settimana di una data a "giorno"
+	
+	FOR i IN 1..array_length(giorni, 1) LOOP
+        giorno := giorni[i];
+		giorno_numero := CASE
+            WHEN giorno = 'lunedi' THEN 2
+            WHEN giorno = 'martedi' THEN 3
+            WHEN giorno = 'mercoledi' THEN 4
+            WHEN giorno = 'giovedi' THEN 5
+            WHEN giorno = 'venerdi' THEN 6
+            WHEN giorno = 'sabato' THEN 7
+            WHEN giorno = 'domenica' THEN 1
+        END;
+		
+		-- questo loop genera una serie di date comprese fra la data inizio e la data della fine
+		
+        FOR data_giorno IN 
+			SELECT generate_series(datainizio, datafine, '1 day'::interval) 
+			FROM CADENZAGIORNALIERA 
+			WHERE nomeCadenzaGiornaliera = new.nomecadenzagiornaliera 
+				
+		LOOP
+			--se il giorno della data corrente corrisponde a "giorno_numero" viene inserita una nuova riga nella tabella corsa
+			 IF giorno_numero =  to_char(data_giorno, 'D')::integer THEN
+                INSERT INTO CORSA (Disponibilitapasseggero, Disponibilitaauto, Giorno, idTratta)
+                VALUES (disponibilitapasseggero, disponibilitaauto, data_giorno, NEW.IdTratta);
+            END IF;
+			-- questo processo è ripetuto per ogni giorno specificato nella cadenzagiornaliera, così da generare corse nelle date rientranti nella cadenza
+        END LOOP;
+    END LOOP;
+	
+   
+RETURN NEW;
+END;
+$BODY$;
+
+ALTER FUNCTION public.insert_into_corsa()
+    OWNER TO postgres;
+
+
 CREATE OR REPLACE FUNCTION public.modifica_ritardo()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -684,7 +704,11 @@ BEGIN
             WHERE idcorsa = NEW.idcorsa;
 			
 			UPDATE corsa
-			SET disponibilita = 0
+			SET disponibilitapasseggero = 0
+			WHERE idcorsa = NEW.idcorsa;
+			
+			UPDATE corsa
+			SET disponibilitaauto = 0
 			WHERE idcorsa = NEW.idcorsa;
 			
         END IF;
@@ -697,6 +721,7 @@ $BODY$;
 
 ALTER FUNCTION public.modifica_ritardo()
     OWNER TO postgres;
+
 
 CREATE OR REPLACE FUNCTION public.prezzo_bagaglio()
     RETURNS trigger
@@ -723,6 +748,7 @@ $BODY$;
 ALTER FUNCTION public.prezzo_bagaglio()
     OWNER TO postgres;
 
+
 CREATE OR REPLACE FUNCTION public.setta_sovrapprezzoprenotazione()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -736,17 +762,15 @@ declare
 	tempo_day integer;
 begin
 
-	select datainizio into data_corsa 
-	from cadenzagiornaliera
-	where nomecadenzagiornaliera in (select nomecadenzagiornaliera 
-									 from corsa
-									 where idcorsa = new.idcorsa);
-									
+	select giorno into data_corsa 
+	from corsa
+	where idcorsa = new.idcorsa;
+	--il giorno della corsa viene conservato in una variabile								
 	select extract(year from age(data_corsa, current_date)) into tempo_year;
 	select extract(month from age(data_corsa, current_date)) into tempo_month;
 	select extract(day from age(data_corsa, current_date)) into tempo_day;
-	
-	-- se la prenotazione viene effettuata durante il periodo in cui si attiva la corsa, allora il sovrapprezzo è settato a 3
+	--la funzione separa giorno mese e anno dalla data
+	-- se la prenotazione viene effettuata prima della data in cui viene prenotata, allora il sovrapprezzo è settato a 3
 	if (tempo_year > 0 or tempo_month > 0 or tempo_day > 0) then
 	
 		new.sovrapprezzoprenotazione = 3.00;
@@ -765,6 +789,8 @@ $BODY$;
 ALTER FUNCTION public.setta_sovrapprezzoprenotazione()
     OWNER TO postgres;
 
+
+
 CREATE OR REPLACE FUNCTION public.verifica_disponibilita_auto()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -775,20 +801,27 @@ declare
 	tipo natante.tiponatante%type;
 	disponibilita_auto integer;
 begin
+	--andiamo ad estrarre il tipo di un natante dalla corsa
 	select tiponatante into tipo
 	from natante
 	where codnatante in (select codnatante 
 						from navigazione 
-						where idcorsa = new.idcorsa);
+						where idtratta in (select idtratta
+										  from corsa
+										  where idcorsa = new.idcorsa));
 
 	select disponibilitaauto into disponibilita_auto
 	from corsa 
-	where idcorsa = new.idcorsa and idcorsa in (select idcorsa
+	where idcorsa = new.idcorsa and idtratta in (select idtratta
 											   from navigazione
 											   where codnatante in (select codnatante
 																   from natante
 																   where tiponatante = 'traghetto'));
-
+		-- estraiamo la disponibilità auto dalla nuova corsa
+	if disponibilita_auto = 0 then
+		raise exception 'I posti auto sono esauriti.';
+	end if;
+	
 	if new.auto = true and tipo <> 'traghetto' then
 		update prenotazione
 		set auto = false
@@ -805,9 +838,6 @@ begin
 		
 	end if;
 	
-	if disponibilita_auto <= 0 then
-		raise exception 'I posti auto sono esauriti.';
-	end if;
 	
 	return new;
 end;
@@ -816,8 +846,25 @@ $BODY$;
 ALTER FUNCTION public.verifica_disponibilita_auto()
     OWNER TO postgres;
 
---Per completezza, sono presenti anche le SEQUENCE relative all'Idprenotazione e all'Idpasseggero, 
---primary key delle rispettive tuple:
+CREATE SEQUENCE IF NOT EXISTS public.id_corsa_sequence
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.id_corsa_sequence
+    OWNER TO postgres;
+
+CREATE SEQUENCE IF NOT EXISTS public.id_tratta_sequence
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.id_tratta_sequence
+    OWNER TO postgres;
 
 CREATE SEQUENCE IF NOT EXISTS public.prenotazione_idprenotazione_seq
     INCREMENT 1
@@ -839,5 +886,3 @@ CREATE SEQUENCE IF NOT EXISTS public.sequenza_id_passeggero
 
 ALTER SEQUENCE public.sequenza_id_passeggero
     OWNER TO postgres;
-
-*/
