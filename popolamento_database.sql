@@ -1,162 +1,140 @@
-PRENOTAZIONE
+POPOLAMENTO DEL DATABASE
 
-"idcorsa","idpasseggero","sovrapprezzoprenotazione","sovrapprezzobagagli","idprenotazione","peso_bagaglio","auto"
-"12",110,"3","10",1,"15.25",False
-"12",6,"3","10",2,"9.75",False
-"14",60,"3","10",3,"27.5",False
-"11",30,"3","10",4,"13",False
-"13",75,"3","10",5,"35",False
-"6",40,"3","10",6,"18.25",False
-"15",85,"3","10",7,"42.75",False
-"19",115,"0","10",8,"7.5",False
-"17",25,"0","10",9,"31",False
-"16",68,"3","10",10,"20.5",False
-"11",50,"3","10",11,"14.25",False
-"2",55,"0","10",12,"10.75",False
-"3",60,"3","10",13,"28.5",False
-"14",65,"3","10",14,"13.75",False
-"15",69,"3","10",15,"37",False
-"16",52,"3","10",16,"22.5",False
-"7",57,"3","10",17,"18.25",False
-"12",61,"3","10",18,"33.75",False
-"9",66,"0","10",19,"19",False
-"10",58,"3","10",20,"25.5",False
-"1",15,"3","10",21,"25.5",False
-"2",78,"0","10",22,"30.25",False
-"3",40,"3","10",23,"15.75",False
-"4",105,"0","10",24,"8.5",False
-"5",22,"3","10",25,"50",False
-"7",90,"3","10",26,"12.75",False
-"7",10,"3","10",27,"40.5",False
-"8",67,"0","10",28,"8.25",False
-"9",33,"0","10",29,"17.75",False
-"10",95,"3","10",30,"22",False
-"11",50,"3","10",31,"12.75",False
-"12",110,"3","10",32,"40.5",False
-"13",23,"3","10",33,"8.25",False
-"14",75,"3","10",34,"17.75",False
-"15",42,"3","10",35,"22",False
-"16",115,"3","10",36,"25.5",False
-"17",68,"0","10",37,"33.5",False
-"6",30,"3","10",38,"19.25",False
-"19",58,"0","10",39,"45.75",False
-"1",85,"3","10",40,"10",False
-"2",102,"0","10",41,"28.5",False
-"3",6,"3","10",42,"15.25",False
-"4",60,"0","10",43,"9.75",False
-"5",25,"3","10",44,"27.5",False
-"2",115,"0","10",45,"13",False
-"7",75,"3","10",46,"35",False
-"8",110,"0","10",47,"18.25",False
-"9",50,"0","10",48,"42.75",False
-"10",69,"3","10",49,"7.5",False
-"11",40,"3","10",50,"18.25",False
-"12",85,"3","10",51,"42.75",False
-"13",115,"3","10",52,"7.5",False
-"14",25,"3","10",53,"31",False
-"15",68,"3","10",54,"20.5",False
-"16",90,"3","10",55,"14.25",False
-"17",9,"0","10",56,"10.75",False
-"6",60,"3","10",57,"28.5",False
-"19",65,"0","10",58,"13.75",False
-"1",69,"3","10",59,"37",False
-"2",52,"0","10",60,"22.5",False
-"3",57,"3","10",61,"18.25",False
-"4",61,"0","10",62,"33.75",False
-"5",66,"3","10",63,"19",False
-"9",58,"0","10",64,"25.5",False
-"7",50,"3","10",65,"14.25",False
-"8",55,"0","10",66,"10.75",False
-"9",60,"0","10",67,"28.5",False
-"10",65,"3","10",68,"13.75",False
-"12",15,"3","10",69,"25.5",True
-"12",78,"3","10",70,"30.25",True
-"12",40,"3","10",71,"15.75",True
-"13",105,"3","10",72,"8.5",True
-"14",22,"3","10",73,"50",True
-"15",90,"3","10",74,"12.75",True
-"16",10,"3","10",75,"40.5",True
-"17",67,"0","10",76,"8.25",True
-"19",33,"0","10",77,"17.75",True
-"19",95,"0","10",78,"22",True
-"17",50,"0","10",79,"12.75",True
-"14",110,"3","10",80,"40.5",True
-"13",3,"3","10",81,"8.25",True
-"13",75,"3","10",82,"17.75",True
-"14",42,"3","10",83,"22",True
-"16",115,"3","10",84,"25.5",True
-"17",68,"0","10",85,"33.5",True
-"16",30,"3","10",86,"19.25",True
-"14",58,"3","10",87,"45.75",True
-"3",85,"3","10",88,"10",True
-"3",102,"3","10",89,"28.5",True
-"3",6,"3","10",90,"15.25",True
-"5",60,"3","10",91,"9.75",True
-"5",25,"3","10",92,"27.5",True
-"5",115,"3","10",93,"13",True
-"5",75,"3","10",94,"35",True
-"5",110,"3","10",95,"18.25",True
-"15",50,"3","10",96,"42.75",True
-"14",69,"3","10",97,"7.5",True
-"13",40,"3","10",98,"18.25",True
-"12",85,"3","10",99,"42.75",True
-"13",115,"3","10",100,"7.5",True
-"19",25,"0","10",101,"31",True
-"19",68,"0","10",102,"20.5",True
-"19",90,"0","10",103,"14.25",True
-"19",6,"0","10",104,"10.75",True
-"19",60,"0","10",105,"28.5",True
-"19",65,"0","10",106,"13.75",True
-"3",69,"3","10",107,"37",True
-"3",52,"3","10",108,"22.5",True
-"19",23,"0",NULL,110,NULL,True
-"19",23,"0",NULL,111,NULL,True
-"19",23,"0",NULL,112,NULL,True
-"19",23,"0",NULL,113,NULL,True
-"19",23,"0",NULL,114,NULL,True
-"19",23,"0",NULL,115,NULL,True
-"19",23,"0",NULL,116,NULL,True
-"19",23,"0",NULL,117,NULL,True
-"19",23,"0",NULL,118,NULL,True
-"19",23,"0",NULL,119,NULL,True
-"19",23,"0",NULL,120,NULL,True
-"19",23,"0",NULL,121,NULL,True
-"19",23,"0",NULL,122,NULL,True
-"19",23,"0",NULL,123,NULL,True
-"19",23,"0",NULL,124,NULL,True
-"19",23,"0",NULL,125,NULL,True
-"19",23,"0",NULL,126,NULL,True
-"19",23,"0",NULL,127,NULL,True
-"19",23,"0",NULL,128,NULL,True
-"19",23,"0",NULL,129,NULL,True
-"19",23,"0",NULL,130,NULL,True
-"19",23,"0",NULL,131,NULL,True
-"19",23,"0",NULL,132,NULL,True
-"19",23,"0",NULL,133,NULL,True
-"19",23,"0",NULL,134,NULL,True
-"19",23,"0",NULL,135,NULL,True
-"19",23,"0",NULL,136,NULL,True
-"19",23,"0",NULL,137,NULL,True
-"19",23,"0",NULL,138,NULL,True
-"19",23,"0",NULL,139,NULL,True
-"19",23,"0",NULL,140,NULL,True
-"19",23,"0",NULL,141,NULL,True
-"19",23,"0",NULL,142,NULL,True
-"19",23,"0",NULL,143,NULL,True
-"19",23,"0",NULL,144,NULL,True
-"19",23,"0",NULL,145,NULL,True
-"19",23,"0",NULL,146,NULL,True
-"19",23,"0",NULL,147,NULL,True
-"19",23,"0",NULL,148,NULL,True
-"19",23,"0",NULL,149,NULL,True
-"19",23,"0",NULL,150,NULL,True
-"19",23,"0",NULL,151,NULL,True
-"1",67,"3","0",152,"3.12",False
-"1",124,"3","0",4321,"3.12",False
+TRATTA
+"idtratta","cittapartenza","cittaarrivo","scalo","nomecompagnia","nomecadenzagiornaliera"
+1,"CAPRI","CASTELLAMMARE",NULL,"MareChiaroT","capri-castellammare primavera/estate 2024"
+2,"CIVITAVECCHIA","OLBIA",NULL,"OndAnomala","civitavecchia-olbia infrasettimanale autunno 2024"
+3,"ISCHIA","PONZA",NULL,"OndAnomala","ischia-ponza estate 2024"
+4,"PONZA","ISCHIA",NULL,"OndAnomala","ponza-ischia estate 2024"
+5,"NAPOLI","PANAREA",NULL,"MareChiaroT","napoli-panarea estate 2024"
+6,"PANAREA","NAPOLI",NULL,"MareChiaroT","panarea-napoli estate 2024"
+7,"NAPOLI","VENTOTENE",NULL,"MareChiaroT","napoli-ventotene estate 2024"
+8,"VENTOTENE","NAPOLI",NULL,"MareChiaroT","ventotene-napoli estate 2024"
+9,"CAGLIARI","SALERNO",NULL,"NaviExpress","cagliari-salerno bisettimanale inverno 2024"
+10,"OLBIA","LIVORNO",NULL,"OndAnomala","olbia-livorno lunedi inverno 2024"
+11,"LIVORNO","OLBIA",NULL,"OndAnomala","livorno-olbia lunedi inverno 2024"
+12,"NAPOLI","ISCHIA",NULL,"OndAnomala","napoli-ischia primavera2024"
+13,"POZZUOLI","ISCHIA","PROCIDA","NavItalia","corsa estiva 2024 pozzuoli-procida-ischia"
+14,"SALERNO","CAGLIARI",NULL,"NaviExpress","salerno-cagliari weekend inverno 2024"
+15,"CIVITAVECCHIA","OLBIA",NULL,"NaviExpress","civitavecchia-olbia infrasettimanale autunno 2024"
+16,"GENOVA","NAPOLI",NULL,"NaviExpress","genova-napoli lun-mer-ven primavera 2024"
+17,"CASTELLAMMARE","CAPRI","NAPOLI","NavItalia","castellammare-capri primavera/estate 2024"
+18,"CAPRI","NAPOLI",NULL,"NavItalia","capri-napoli febbraio-settembre 2024"
+19,"NAPOLI","CAPRI",NULL,"NavItalia","napoli-capri febbraio-settembre 2024"
+
+
+PRENOTAZIONE
+"idpasseggero","sovrapprezzoprenotazione","sovrapprezzobagagli","idprenotazione","peso_bagaglio","auto","idcorsa"
+3,"3","10",340,"20.5",True,2
+4,"3","10",341,"15",False,3
+6,"3","10",342,"10.2",True,4
+6,"3","10",343,"12.5",False,5
+8,"3","10",344,"18",True,6
+8,"3","10",345,"14.3",False,7
+9,"3","10",346,"9.7",True,8
+10,"3","10",347,"11",False,9
+11,"3","10",348,"16.8",True,10
+12,"3","10",349,"13.2",False,93
+13,"3","10",350,"8.5",False,94
+14,"3","10",351,"17.1",False,95
+15,"3","10",352,"19.3",False,96
+16,"3","10",353,"14.9",False,97
+17,"3","10",354,"11.5",False,95
+18,"3","10",355,"10",False,97
+19,"3","10",356,"15.7",True,10
+20,"3","10",357,"12.3",False,10
+21,"3","10",358,"18.2",True,2
+22,"3","10",359,"9.8",False,3
+23,"3","10",360,"16.5",True,4
+24,"3","10",361,"13.1",False,5
+25,"3","10",362,"20",True,6
+26,"3","10",363,"14.5",False,7
+27,"3","10",364,"11.2",True,8
+28,"3","10",365,"17.9",False,9
+29,"3","10",366,"19.5",True,10
+30,"3","10",367,"12.7",False,2
+31,"3","10",368,"18.7",True,2
+32,"3","10",369,"9.3",False,3
+33,"3","10",370,"16.2",True,4
+34,"3","10",371,"13.8",False,5
+35,"3","10",372,"20.3",True,6
+36,"3","10",373,"14.7",False,7
+37,"3","10",374,"11.4",True,8
+38,"3","10",375,"17.3",False,9
+39,"3","10",376,"19.8",False,93
+40,"3","10",377,"12.1",False,94
+41,"3","10",378,"18.5",False,95
+42,"3","10",379,"9.9",False,96
+43,"3","10",380,"16.7",False,97
+44,"3","10",381,"13.3",False,2
+45,"3","10",382,"20.5",True,6
+46,"3","10",383,"14.8",False,7
+47,"3","10",384,"11.3",True,8
+48,"3","10",385,"17.2",False,2
+49,"3","10",386,"19.7",True,3
+50,"3","10",387,"12",False,4
+60,"3","10",506,"20.5",True,2
+61,"3","10",507,"15",False,3
+62,"3","10",508,"10.2",True,4
+63,"3","10",509,"12.5",False,5
+64,"3","10",510,"18",True,6
+65,"3","10",511,"14.3",False,7
+66,"3","10",512,"9.7",True,8
+67,"3","10",513,"11",False,9
+68,"3","10",514,"16.8",True,10
+69,"3","10",515,"13.2",False,93
+70,"3","10",516,"8.5",False,94
+71,"3","10",517,"17.1",False,95
+72,"3","10",518,"19.3",False,96
+73,"3","10",519,"14.9",False,97
+74,"3","10",520,"11.5",True,8
+75,"3","10",521,"10",False,9
+76,"3","10",522,"15.7",True,10
+77,"3","10",523,"12.3",False,2
+78,"3","10",524,"18.2",False,93
+79,"3","10",525,"9.8",False,3
+80,"3","10",526,"16.5",True,4
+81,"3","10",527,"13.1",False,5
+82,"3","10",528,"20",True,6
+83,"3","10",529,"14.5",False,7
+84,"3","10",530,"11.2",True,10
+85,"3","10",531,"17.9",False,9
+86,"3","10",532,"19.5",False,93
+87,"3","10",533,"12.7",False,94
+88,"3","10",534,"18.7",True,2
+89,"3","10",535,"9.3",False,3
+90,"3","10",536,"16.2",True,4
+91,"3","10",537,"13.8",False,5
+92,"3","10",538,"20.3",True,6
+93,"3","10",539,"14.7",False,7
+94,"3","10",540,"11.4",True,8
+95,"3","10",541,"17.3",False,9
+96,"3","10",542,"19.8",True,10
+97,"3","10",543,"12.1",False,95
+98,"3","10",544,"18.5",False,96
+99,"3","10",545,"9.9",False,97
+100,"3","10",546,"16.7",False,94
+101,"3","10",547,"13.3",False,95
+102,"3","10",548,"20.5",True,6
+103,"3","10",549,"14.8",False,7
+104,"3","10",550,"11.3",True,8
+105,"3","10",551,"17.2",False,2
+106,"3","10",552,"19.7",True,3
+107,"3","10",553,"12",False,4
+108,"3","10",554,"18.5",True,5
+109,"3","10",555,"9.9",False,6
+110,"3","10",556,"16.7",True,7
+111,"3","10",557,"13.3",False,8
+112,"3","10",558,"20.5",True,9
+113,"3","10",559,"14.8",False,10
+114,"3","10",560,"11.3",False,93
+115,"3","10",561,"17.2",False,94
+116,"3","10",562,"19.7",False,95
+117,"3","10",563,"12",False,96
+118,"3","10",564,"18.5",False,97
 
 
 PASSEGGERO
-
 "idpasseggero","nome","cognome","datanascita"
 3,"Antonio","Lamore","2002-04-02"
 4,"Simone","Iavarone","2003-04-29"
@@ -281,67 +259,33 @@ PASSEGGERO
 125,"Freddie","Mercury","1946-09-05"
 126,"David","Bowie","1947-01-08"
 127,"Dave","Gahan","1962-05-09"
-
-
-COMPAGNIA DI NAVIGAZIONE
-
-"nomecompagnia","numeronatanti","telefono","mail","sitoweb"
-"MareChiaroT",1,"000111222333","marechiarot@compagnia.com","marechiarot.com"
-"NaviExpress",3,NULL,NULL,NULL
-"NavItalia",4,"0123456789","navitalia@compagnia.com","navitalia.it"
-"OndAnomala",5,"999888777666","ondanomala@compagnia.com","ondAnomala.it"
-
-
-CORSA
-
-"idcorsa","nomecompagnia","cittapartenza","cittaarrivo","scalo","ritardo","disponibilita","nomecadenzagiornaliera","disponibilitaauto"
-"1","NavItalia","CAPRI","CASTELLAMMARE","NAPOLI",NULL,20,"capri-castellammare primavera/estate 2024",0
-"10","OndAnomala","CIVITAVECCHIA","OLBIA",NULL,NULL,56,"civitavecchia-olbia infrasettimanale autunno 2024",0
-"11","OndAnomala","ISCHIA","PONZA",NULL,"30'",56,"ischia-ponza estate 2024",0
-"12","OndAnomala","PONZA","ISCHIA",NULL,NULL,91,"ponza-ischia estate 2024",46
-"13","MareChiaroT","NAPOLI","PANAREA",NULL,NULL,92,"napoli-panarea estate 2024",45
-"14","MareChiaroT","PANAREA","NAPOLI",NULL,NULL,91,"panarea-napoli estate 2024",45
-"15","MareChiaroT","NAPOLI","VENTOTENE",NULL,NULL,94,"napoli-ventotene estate 2024",48
-"16","MareChiaroT","VENTOTENE","NAPOLI",NULL,NULL,93,"ventotene-napoli estate 2024",47
-"17","NaviExpress","CAGLIARI","SALERNO",NULL,NULL,94,"cagliari-salerno bisettimanale inverno 2024",47
-"18","OndAnomala","OLBIA","LIVORNO",NULL,"canc",0,"olbia-livorno lunedi inverno 2024",50
-"19","OndAnomala","LIVORNO","OLBIA",NULL,NULL,47,"livorno-olbia lunedi inverno 2024",0
-"2","OndAnomala","NAPOLI","ISCHIA",NULL,NULL,55,"napoli-ischia primavera2024",0
-"3","NavItalia","POZZUOLI","ISCHIA","PROCIDA",NULL,141,"corsa estiva 2024 pozzuoli-procida-ischia",45
-"4","NaviExpress","SALERNO","CAGLIARI",NULL,NULL,47,"salerno-cagliari weekend inverno 2024",0
-"5","NaviExpress","CIVITAVECCHIA","OLBIA",NULL,NULL,92,"civitavecchia-olbia infrasettimanale autunno 2024",45
-"6","NaviExpress","GENOVA","NAPOLI",NULL,"10'",47,"genova-napoli lun-mer-ven primavera 2024",0
-"7","NavItalia","CASTELLAMMARE","CAPRI","NAPOLI",NULL,45,"castellammare-capri primavera/estate 2024",0
-"8","NavItalia","CAPRI","NAPOLI",NULL,NULL,22,"capri-napoli febbraio-settembre 2024",0
-"9","NavItalia","NAPOLI","CAPRI",NULL,NULL,20,"napoli-capri febbraio-settembre 2024",0
+128,"Giovanni","Di Meo","2007-07-01"
 
 
 NAVIGAZIONE
-
-"idcorsa","codnatante"
-"1","3"
-"10","12"
-"11","12"
-"12","9"
-"13","13"
-"14","13"
-"15","13"
-"16","13"
-"17","7"
-"18","9"
-"19","9"
-"2","11"
-"3","6"
-"4","5"
-"5","7"
-"6","5"
-"7","4"
-"8","3"
-"9","3"
+"idtratta","codnatante"
+1,"13"
+2,"2"
+3,"11"
+4,"12"
+5,"13"
+6,"13"
+7,"13"
+8,"13"
+9,"1"
+10,"10"
+11,"10"
+12,"2"
+13,"6"
+14,"5"
+15,"7"
+16,"5"
+17,"6"
+18,"4"
+19,"6"
 
 
 NATANTE
-
 "codnatante","nomecompagnia","tiponatante","capienzapasseggeri","capienzaautomezzi"
 "1","NaviExpress","aliscafo",50,0
 "10","OndAnomala","aliscafo",75,0
@@ -358,15 +302,30 @@ NATANTE
 "9","OndAnomala","traghetto",100,50
 
 
-CADENZA GIORNALIERA
+INDIRIZZOSOCIAL
+"indirizzo","nomecompagnia"
+"@Mare_Chiaro_Traghetti","MareChiaroT"
+"@navi_Italia_official","NavItalia"
+"@OndAnomala_","OndAnomala"
+"Navi Italia","NavItalia"
 
+
+COMPAGNIA DI NAVIGAZIONE
+"nomecompagnia","numeronatanti","telefono","mail","sitoweb"
+"MareChiaroT",1,"000111222333","marechiarot@compagnia.com","marechiarot.com"
+"NaviExpress",3,NULL,NULL,NULL
+"NavItalia",4,"0123456789","navitalia@compagnia.com","navitalia.it"
+"OndAnomala",5,"999888777666","ondanomala@compagnia.com","ondAnomala.it"
+
+
+CADENZA GIORNALIERA
 "datainizio","datafine","giornosettimanale","orariopartenza","orarioarrivo","nomecadenzagiornaliera"
 "2023-12-15","2024-02-29","lunedi","10:00:00","12:50:00","cagliari-salerno bisettimanale inverno 2024"
 "2024-06-01","2024-09-30","sabato, domenica","10:00:00","13:30:00","capri-castellammare primavera/estate 2024"
 "2024-01-31","2024-09-30","lunedi, mercoledi, giovedi, sabato, domenica","10:00:00","10:50:00","capri-napoli febbraio-settembre 2024"
 "2024-06-01","2024-09-30","sabato, domenica","10:00:00","13:30:00","castellammare-capri primavera/estate 2024"
 "2024-09-20","2024-12-07","lunedi, martedi, mercoledi, giovedi, venerdi","07:00:00","15:00:00","civitavecchia-olbia infrasettimanale autunno 2024"
-"2024-05-15","2024-09-15","tutti i giorni","10:30:00","11:30:00","corsa estiva 2024 pozzuoli-procida-ischia"
+"2024-05-15","2024-09-15","sabato","10:30:00","11:30:00","corsa estiva 2024 pozzuoli-procida-ischia"
 "2024-03-21","2024-05-21","lunedi, mercoledi, venerdi","13:20:00","15:00:00","genova-napoli lun-mer-ven primavera 2024"
 "2024-06-01","2024-09-30","martedi, giovedi, sabato, domenica","09:00:00","10:50:00","ischia-ponza estate 2024"
 "2023-11-15","2024-01-31","lunedi","10:00:00","12:50:00","livorno-olbia lunedi inverno 2024"
@@ -381,174 +340,1083 @@ CADENZA GIORNALIERA
 "2024-06-01","2024-09-30","martedi, sabato, domenica","09:00:00","10:50:00","ventotene-napoli estate 2024"
 
 
-INDIRIZZO SOCIAL
-
-"indirizzo","nomecompagnia"
-"@Mare_Chiaro_Traghetti","MareChiaroT"
-"@navi_Italia_official","NavItalia"
-"@OndAnomala_","OndAnomala"
-"Navi Italia","NavItalia"
-
-
 BIGLIETTO RIDOTTO
-
 "codbigliettor","prezzo","nominativo","idpasseggero"
-67493,"23.5","Valentina Caruso",69
-132322,"23.5","Valentina Caruso",69
-267917,"23.5","Valentina Caruso",69
-368364,"20.5","Andrea Conti",60
-399789,"23.5","Valentina Caruso",69
-439786,"23.5","Andrea Conti",60
-464047,"20.5","Sofia De Santis",67
-489668,"13.5","Sofia De Santis",67
-490677,"23.5","Paolo Moretti",58
-514698,"23.5","Alessia Romano",57
-518304,"20.5","Andrea Conti",60
-528542,"20.5","Simona Rizzo",65
-541590,"23.5","Valentina Caruso",69
-575334,"20.5","Paolo Moretti",58
-594920,"23.5","Alessia Romano",57
-648454,"20.5","Paolo Moretti",58
-686255,"23.5","Andrea Conti",60
-712673,"23.5","Simona Rizzo",65
-751163,"20.5","Andrea Conti",60
-812294,"20.5","Sofia De Santis",67
-814665,"23.5","Andrea Conti",60
-881581,"23.5","Simona Rizzo",65
-966318,"23.5","Paolo Moretti",58
-984739,"20.5","Simona Rizzo",65
-989190,"23.5","Andrea Conti",60
+32390,"23.5","Anna Rinaldi",71
+170554,"23.5","Sofia De Santis",67
+203228,"23.5","Andrea Conti",60
+288628,"23.5","Eleonora Lombardi",63
+373201,"23.5","Valentina Caruso",69
+399460,"23.5","Simona Rizzo",65
 
 
 BIGLIETTO INTERO
-
 "codbigliettoi","prezzo","nominativo","idpasseggero"
-1695,NULL,"Valentina Caruso",23
-9937,"25.5","Alessandra Barbieri",33
-11787,"28.5","Vincenzo Marini",40
-12269,"28.5","Giulia Caprioli",115
-35597,"25.5","Giulia Gallo",61
-49589,"28.5","Alessio Costantini",50
-49913,NULL,"Valentina Caruso",23
-50167,NULL,"Valentina Caruso",23
-56536,NULL,"Valentina Caruso",23
-58517,"25.5","Anna Rinaldi",25
-62241,"28.5","Daniele Palmieri",52
-64983,NULL,"Valentina Caruso",23
-77401,NULL,"Valentina Caruso",23
-79083,NULL,"Valentina Caruso",23
-85978,NULL,"Valentina Caruso",23
-95033,"25.5","Simone Esposito",90
-117089,"28.5","Alessio Costantini",50
-119973,"25.5","Nicola Ferri",102
-123794,"25.5","Giovanni Esposito",68
-125190,"28.5","Vincenzo Marini",40
-149359,"28.5","Alessio Costantini",50
-149468,"28.5","Simone Esposito",90
-152156,"28.5","Giovanni Esposito",68
-201821,"28.5","Giulia Caprioli",115
-210870,"28.5","Giovanni Esposito",68
-236097,NULL,"Valentina Caruso",23
-239476,"28.5","Riccardo Mariani",110
-246403,NULL,"Valentina Caruso",23
-267021,NULL,"Valentina Caruso",23
-268972,NULL,"Valentina Caruso",23
-276004,NULL,"Valentina Caruso",23
-288802,"28.5","Valentina Lombardi",85
-292976,"28.5","Porfirio Tramontana",75
-299585,"28.5","Silvio Barra",6
-304605,"28.5","Martina Gallo",15
-312070,NULL,"Valentina Caruso",23
-312395,"28.5","Vincenzo Marini",40
-317656,"28.5","Christian Villa",30
-319414,NULL,"Valentina Caruso",23
-341603,NULL,"Valentina Caruso",23
-351933,"28.5","Vincenzo Marini",40
-354134,"28.5","Anna Rinaldi",25
-358704,"25.5","Giovanni Esposito",68
-358755,NULL,"Valentina Caruso",23
-366942,"28.5","Christian Villa",30
-371551,"25.5","Giovanni Esposito",68
-374166,"25.5","Luigi Ferraro",78
-378638,"28.5","Daniele Palmieri",52
-379071,"25.5","Anna Rinaldi",25
-379097,"28.5","Porfirio Tramontana",75
-381160,"28.5","Valentina Lombardi",85
-392380,"25.5","Martina Serra",95
-401901,NULL,"Valentina Caruso",23
-404876,"28.5","Christian Villa",30
-405797,NULL,"Valentina Caruso",23
-409824,"28.5","Alessio Costantini",50
-416183,"25.5","Giulia Caprioli",115
-416520,"28.5","Porfirio Tramontana",75
-424372,"25.5","Valeria Migliore",105
-425738,"28.5","Vincenzo Marini",40
-430805,"28.5","Antonio Lamore",3
-446120,NULL,"Valentina Caruso",23
-449154,"28.5","Porfirio Tramontana",75
-449487,NULL,"Valentina Caruso",23
-451538,"28.5","Valentina Lombardi",85
-453052,NULL,"Valentina Caruso",23
-455502,NULL,"Valentina Caruso",23
-457109,"28.5","Giovanni Esposito",22
-465287,NULL,"Valentina Caruso",23
-471273,"28.5","Valentina Lombardi",85
-472020,"28.5","Giulia Gallo",61
-474309,"28.5","Valentina Lombardi",85
-487150,"28.5","Giulia Caprioli",115
-491930,"28.5","Silvio Barra",6
-497569,NULL,"Valentina Caruso",23
-499305,"28.5","Anna Rinaldi",25
-502586,"25.5","Riccardo Mariani",110
-511653,"25.5","Daniele Palmieri",52
-520500,"28.5","Luca Ferrari",10
-532660,"28.5","Luigi Ferraro",78
-539327,"25.5","Silvio Barra",6
-539875,NULL,"Valentina Caruso",23
-541566,NULL,"Valentina Caruso",23
-555383,"28.5","Antonio De Angelis",66
-568166,"28.5","Claudio Russo",42
-571198,NULL,"Valentina Caruso",23
-581183,"28.5","Valentina Caruso",23
-582662,"28.5","Riccardo Mariani",110
-587866,NULL,"Valentina Caruso",23
-594804,"25.5","Giulia Bianchi",9
-595753,"25.5","Martina Bianchi",55
-631154,"28.5","Luca Ferrari",10
-633544,NULL,"Valentina Caruso",23
-645142,"25.5","Alessio Costantini",50
-656908,NULL,"Valentina Caruso",23
-658466,"28.5","Martina Gallo",15
-676673,NULL,"Valentina Caruso",23
-699387,NULL,"Valentina Caruso",23
-718296,"28.5","Valeria Migliore",105
-736004,NULL,"Valentina Caruso",23
-748913,"28.5","Claudio Russo",42
-771595,"25.5","Martina Bianchi",55
-777918,NULL,"Valentina Caruso",23
-789751,NULL,"Valentina Caruso",23
-820400,"28.5","Porfirio Tramontana",75
-827363,"25.5","Antonio De Angelis",66
-830987,"28.5","Riccardo Mariani",110
-839718,"28.5","Martina Serra",95
-846166,NULL,"Valentina Caruso",23
-859966,NULL,"Valentina Caruso",23
-860618,"28.5","Nicola Ferri",102
-860642,NULL,"Valentina Caruso",23
-876763,NULL,"Valentina Caruso",23
-890407,"28.5","Anna Rinaldi",25
-905104,"28.5","Simone Esposito",90
-905691,"25.5","Alessandra Barbieri",33
-910495,"28.5","Giulia Caprioli",115
-912064,"18.5","Mick Jagger",124
-912312,"28.5","Silvio Barra",6
-929796,"28.5","Giovanni Esposito",22
-963868,"28.5","Giulia Caprioli",115
-964790,"28.5","Simone Esposito",90
-971029,"25.5","Giulia Caprioli",115
-985649,"28.5","Riccardo Mariani",110
-992331,NULL,"Valentina Caruso",23
-996281,NULL,"Valentina Caruso",23
-998594,"25.5","Alessio Costantini",50
+760,"28.5","Giulia Caprioli",115
+5196,"28.5","Riccardo Mariani",110
+12639,"28.5","Roberto Longo",98
+17564,"28.5","Silvia Serra",73
+24770,"28.5","Massimo Bruno",38
+42779,"28.5","Martina Gallo",15
+53085,"28.5","Giulia Gallo",61
+61582,"28.5","Valeria Migliore",105
+62509,"28.5","Silvia Ferrari",99
+66781,"28.5","Daniele Ferri",114
+68183,"28.5","Federica Longo",39
+82661,"28.5","Alessia Romano",11
+88927,"28.5","Antonio De Angelis",66
+91379,"28.5","Fabio Caputo",72
+106934,"28.5","Antonio De Angelis",20
+121953,"28.5","Ilaria Pizzuti",47
+122755,"28.5","Sofia Russo",111
+171927,"28.5","Sara Rizzo",87
+172325,"28.5","Silvio Barra",6
+182287,"28.5","Silvia Serra",27
+198901,"28.5","Giovanni Esposito",68
+203370,"28.5","Davide Mancini",16
+210400,"28.5","Christian Villa",30
+215321,"28.5","Francesco Longo",108
+229380,"28.5","Enrico Pellegrini",70
+257000,"28.5","Tommaso Caprioli",46
+262092,"28.5","Paolo Martini",86
+268033,"28.5","Simone Esposito",90
+291155,"28.5","Chiara Piras",103
+309295,"28.5","Stefano Bellini",117
+312995,"28.5","Claudia Guerrieri",118
+337295,"28.5","Giulia Bianchi",9
+347681,"28.5","Antonio Lamore",3
+352890,"28.5","Luigi Ferraro",78
+365144,"28.5","Laura Costa",31
+370690,"28.5","Valentina Lombardi",85
+378079,"28.5","Elisa Colombo",81
+385017,"28.5","Cristina D'Amico",113
+387640,"28.5","Francesca Ricci",13
+393278,"28.5","Mattia Sanna",104
+416862,"28.5","Vincenzo Marini",40
+424084,"28.5","Giovanni Mancini",96
+435774,"28.5","Serena Bruno",107
+456611,"28.5","Gabriele Migliore",36
+459035,"28.5","Elena Piras",29
+466547,"28.5","Martina Serra",95
+470974,"28.5","Paolo Moretti",12
+473187,"28.5","Lorenzo Poli",112
+488700,"28.5","Luca Caputo",94
+500644,"28.5","Luca Ferrari",10
+505563,"28.5","Beatrice Sanna",35
+508652,"28.5","Alessandra Ricci",79
+523969,"28.5","Massimo Santoro",80
+554413,"28.5","Stefania Rinaldi",93
+569053,"28.5","Sofia De Santis",21
+589156,"28.5","Linda Marchetti",37
+617009,"28.5","Guido Bellini",48
+635722,"28.5","Andrea Conti",14
+636294,"28.5","Antonio Barbieri",100
+653993,"28.5","Simone Iavarone",4
+655476,"28.5","Alessio Costantini",50
+672142,"28.5","Silvio Barra",6
+675551,"28.5","Eliana Illiano",74
+686366,"28.5","Serena Mariani",41
+700386,"28.5","Elena Russo",97
+700837,"28.5","Gianluca De Angelis",88
+703200,"28.5","Fabio Caputo",26
+721339,"28.5","Michele Leone",32
+723925,"28.5","Riccardo Martini",18
+745959,"28.5","Stefano Farina",34
+748670,"28.5","Giorgia Lombardi",77
+760885,"28.5","Valeria Ferri",45
+762121,"28.5","Miriam Guerrieri",49
+767793,"28.5","Simona Rizzo",19
+778086,"28.5","Marco Mancini",84
+788684,"28.5","Alice Gallo",83
+789782,"28.5","Marco Rossi",8
+793605,"28.5","Giovanni Esposito",22
+815396,"28.5","Valentina Caruso",23
+816961,"28.5","Fabio Pizzuti",116
+822815,"28.5","Porfirio Tramontana",75
+826211,"28.5","Matteo Galli",28
+833270,"28.5","Elisa Poli",43
+843147,"28.5","Claudio Russo",42
+848510,"28.5","Elisabetta Marini",109
+857695,"28.5","Davide Marchetti",106
+864730,"28.5","Francesca De Santis",89
+866273,"28.5","Nicola Ferri",102
+866406,"28.5","Lorenzo Morelli",76
+869106,"28.5","Gabriele Conti",82
+892695,"28.5","Alessandra Barbieri",33
+902244,"28.5","Eleonora Lombardi",17
+921106,"28.5","Eleonora Caruso",91
+928076,"28.5","Marco Rossi",8
+932074,"28.5","Gabriel D'Amico",44
+932741,"28.5","Riccardo Martini",64
+932868,"28.5","Anna Rinaldi",25
+980823,"28.5","Laura Farina",101
+991170,"28.5","Enrico Pellegrini",24
+993507,"28.5","Andrea Pellegrini",92
+995072,"28.5","Davide Mancini",62
 
 
+CORSA 
+"idcorsa","ritardo","disponibilitaauto","disponibilitapasseggero","giorno","idtratta"
+1,"canc",0,0,"2024-06-01",1
+2,NULL,45,90,"2024-06-08",1
+3,NULL,48,92,"2024-06-15",1
+4,NULL,44,92,"2024-06-22",1
+5,NULL,49,93,"2024-06-29",1
+6,NULL,42,91,"2024-07-06",1
+7,NULL,49,91,"2024-07-13",1
+8,NULL,42,91,"2024-07-20",1
+9,NULL,49,92,"2024-07-27",1
+10,NULL,43,91,"2024-08-03",1
+11,NULL,50,100,"2024-08-10",1
+12,NULL,50,100,"2024-08-17",1
+13,NULL,50,100,"2024-08-24",1
+14,NULL,50,100,"2024-08-31",1
+15,NULL,50,100,"2024-09-07",1
+16,NULL,50,100,"2024-09-14",1
+17,NULL,50,100,"2024-09-21",1
+18,NULL,50,100,"2024-09-28",1
+19,NULL,50,100,"2024-06-02",1
+20,"30'",50,100,"2024-06-09",1
+21,NULL,50,100,"2024-06-16",1
+22,NULL,50,100,"2024-06-23",1
+23,NULL,50,100,"2024-06-30",1
+24,NULL,50,100,"2024-07-07",1
+25,NULL,50,100,"2024-07-14",1
+26,NULL,50,100,"2024-07-21",1
+27,NULL,50,100,"2024-07-28",1
+28,NULL,50,100,"2024-08-04",1
+29,NULL,50,100,"2024-08-11",1
+30,NULL,50,100,"2024-08-18",1
+31,NULL,50,100,"2024-08-25",1
+32,"10'",50,100,"2024-09-01",1
+33,NULL,50,100,"2024-09-08",1
+34,NULL,50,100,"2024-09-15",1
+35,NULL,50,100,"2024-09-22",1
+36,NULL,50,100,"2024-09-29",1
+37,NULL,50,100,"2024-09-23",2
+38,NULL,50,100,"2024-09-30",2
+39,NULL,50,100,"2024-10-07",2
+40,NULL,50,100,"2024-10-14",2
+41,NULL,50,100,"2024-10-21",2
+42,NULL,50,100,"2024-10-28",2
+43,NULL,50,100,"2024-11-04",2
+44,NULL,50,100,"2024-11-11",2
+45,NULL,50,100,"2024-11-18",2
+46,NULL,50,100,"2024-11-25",2
+47,NULL,50,100,"2024-12-02",2
+48,NULL,50,100,"2024-09-24",2
+49,NULL,50,100,"2024-10-01",2
+50,NULL,50,100,"2024-10-08",2
+51,NULL,50,100,"2024-10-15",2
+52,NULL,50,100,"2024-10-22",2
+53,NULL,50,100,"2024-10-29",2
+54,NULL,50,100,"2024-11-05",2
+55,NULL,50,100,"2024-11-12",2
+56,NULL,50,100,"2024-11-19",2
+57,NULL,50,100,"2024-11-26",2
+58,NULL,50,100,"2024-12-03",2
+59,NULL,50,100,"2024-09-25",2
+60,NULL,50,100,"2024-10-02",2
+61,NULL,50,100,"2024-10-09",2
+62,NULL,50,100,"2024-10-16",2
+63,NULL,50,100,"2024-10-23",2
+64,NULL,50,100,"2024-10-30",2
+65,NULL,50,100,"2024-11-06",2
+66,NULL,50,100,"2024-11-13",2
+67,NULL,50,100,"2024-11-20",2
+68,NULL,50,100,"2024-11-27",2
+69,NULL,50,100,"2024-12-04",2
+70,NULL,50,100,"2024-09-26",2
+71,NULL,50,100,"2024-10-03",2
+72,NULL,50,100,"2024-10-10",2
+73,NULL,50,100,"2024-10-17",2
+74,NULL,50,100,"2024-10-24",2
+75,NULL,50,100,"2024-10-31",2
+76,NULL,50,100,"2024-11-07",2
+77,NULL,50,100,"2024-11-14",2
+78,NULL,50,100,"2024-11-21",2
+79,NULL,50,100,"2024-11-28",2
+80,NULL,50,100,"2024-12-05",2
+81,NULL,50,100,"2024-09-20",2
+82,NULL,50,100,"2024-09-27",2
+83,NULL,50,100,"2024-10-04",2
+84,NULL,50,100,"2024-10-11",2
+85,NULL,50,100,"2024-10-18",2
+86,NULL,50,100,"2024-10-25",2
+87,NULL,50,100,"2024-11-01",2
+88,NULL,50,100,"2024-11-08",2
+89,"43'",50,100,"2024-11-15",2
+90,NULL,50,100,"2024-11-22",2
+91,NULL,50,100,"2024-11-29",2
+92,NULL,50,100,"2024-12-06",2
+93,NULL,0,54,"2024-06-04",3
+94,NULL,0,54,"2024-06-11",3
+95,NULL,0,53,"2024-06-18",3
+96,NULL,0,55,"2024-06-25",3
+97,NULL,0,54,"2024-07-02",3
+98,NULL,0,60,"2024-07-09",3
+99,NULL,0,60,"2024-07-16",3
+100,"45'",0,60,"2024-07-23",3
+101,NULL,0,60,"2024-07-30",3
+102,NULL,0,60,"2024-08-06",3
+103,NULL,0,60,"2024-08-13",3
+104,NULL,0,60,"2024-08-20",3
+105,NULL,0,60,"2024-08-27",3
+106,NULL,0,60,"2024-09-03",3
+107,NULL,0,60,"2024-09-10",3
+108,NULL,0,60,"2024-09-17",3
+109,NULL,0,60,"2024-09-24",3
+110,NULL,0,60,"2024-06-06",3
+111,NULL,0,60,"2024-06-13",3
+112,NULL,0,60,"2024-06-20",3
+113,NULL,0,60,"2024-06-27",3
+114,NULL,0,60,"2024-07-04",3
+115,NULL,0,60,"2024-07-11",3
+116,NULL,0,60,"2024-07-18",3
+117,NULL,0,60,"2024-07-25",3
+118,NULL,0,60,"2024-08-01",3
+119,NULL,0,60,"2024-08-08",3
+120,NULL,0,60,"2024-08-15",3
+121,NULL,0,60,"2024-08-22",3
+122,NULL,0,60,"2024-08-29",3
+123,NULL,0,60,"2024-09-05",3
+124,NULL,0,60,"2024-09-12",3
+125,NULL,0,60,"2024-09-19",3
+126,NULL,0,60,"2024-09-26",3
+127,NULL,0,60,"2024-06-01",3
+128,NULL,0,60,"2024-06-08",3
+129,NULL,0,60,"2024-06-15",3
+130,NULL,0,60,"2024-06-22",3
+131,NULL,0,60,"2024-06-29",3
+132,NULL,0,60,"2024-07-06",3
+133,NULL,0,60,"2024-07-13",3
+134,NULL,0,60,"2024-07-20",3
+135,NULL,0,60,"2024-07-27",3
+136,NULL,0,60,"2024-08-03",3
+137,NULL,0,60,"2024-08-10",3
+138,NULL,0,60,"2024-08-17",3
+139,NULL,0,60,"2024-08-24",3
+140,NULL,0,60,"2024-08-31",3
+141,NULL,0,60,"2024-09-07",3
+142,NULL,0,60,"2024-09-14",3
+143,NULL,0,60,"2024-09-21",3
+144,NULL,0,60,"2024-09-28",3
+145,NULL,0,60,"2024-06-02",3
+146,NULL,0,60,"2024-06-09",3
+147,NULL,0,60,"2024-06-16",3
+148,NULL,0,60,"2024-06-23",3
+149,NULL,0,60,"2024-06-30",3
+150,NULL,0,60,"2024-07-07",3
+151,NULL,0,60,"2024-07-14",3
+152,NULL,0,60,"2024-07-21",3
+153,NULL,0,60,"2024-07-28",3
+154,NULL,0,60,"2024-08-04",3
+155,NULL,0,60,"2024-08-11",3
+156,NULL,0,60,"2024-08-18",3
+157,NULL,0,60,"2024-08-25",3
+158,NULL,0,60,"2024-09-01",3
+159,NULL,0,60,"2024-09-08",3
+160,NULL,0,60,"2024-09-15",3
+161,NULL,0,60,"2024-09-22",3
+162,NULL,0,60,"2024-09-29",3
+163,NULL,0,60,"2024-06-04",4
+164,NULL,0,60,"2024-06-11",4
+165,NULL,0,60,"2024-06-18",4
+166,NULL,0,60,"2024-06-25",4
+167,NULL,0,60,"2024-07-02",4
+168,NULL,0,60,"2024-07-09",4
+169,NULL,0,60,"2024-07-16",4
+170,NULL,0,60,"2024-07-23",4
+171,NULL,0,60,"2024-07-30",4
+172,NULL,0,60,"2024-08-06",4
+173,NULL,0,60,"2024-08-13",4
+174,NULL,0,60,"2024-08-20",4
+175,NULL,0,60,"2024-08-27",4
+176,NULL,0,60,"2024-09-03",4
+177,NULL,0,60,"2024-09-10",4
+178,NULL,0,60,"2024-09-17",4
+179,NULL,0,60,"2024-09-24",4
+180,NULL,0,60,"2024-06-06",4
+181,NULL,0,60,"2024-06-13",4
+182,NULL,0,60,"2024-06-20",4
+183,NULL,0,60,"2024-06-27",4
+184,NULL,0,60,"2024-07-04",4
+185,NULL,0,60,"2024-07-11",4
+186,NULL,0,60,"2024-07-18",4
+187,NULL,0,60,"2024-07-25",4
+188,NULL,0,60,"2024-08-01",4
+189,NULL,0,60,"2024-08-08",4
+190,NULL,0,60,"2024-08-15",4
+191,NULL,0,60,"2024-08-22",4
+192,NULL,0,60,"2024-08-29",4
+193,NULL,0,60,"2024-09-05",4
+194,NULL,0,60,"2024-09-12",4
+195,NULL,0,60,"2024-09-19",4
+196,NULL,0,60,"2024-09-26",4
+197,NULL,0,60,"2024-06-01",4
+198,NULL,0,60,"2024-06-08",4
+199,NULL,0,60,"2024-06-15",4
+200,NULL,0,60,"2024-06-22",4
+201,NULL,0,60,"2024-06-29",4
+202,NULL,0,60,"2024-07-06",4
+203,NULL,0,60,"2024-07-13",4
+204,NULL,0,60,"2024-07-20",4
+205,NULL,0,60,"2024-07-27",4
+206,NULL,0,60,"2024-08-03",4
+207,NULL,0,60,"2024-08-10",4
+208,NULL,0,60,"2024-08-17",4
+209,NULL,0,60,"2024-08-24",4
+210,NULL,0,60,"2024-08-31",4
+211,NULL,0,60,"2024-09-07",4
+212,NULL,0,60,"2024-09-14",4
+213,NULL,0,60,"2024-09-21",4
+214,NULL,0,60,"2024-09-28",4
+215,NULL,0,60,"2024-06-02",4
+216,NULL,0,60,"2024-06-09",4
+217,NULL,0,60,"2024-06-16",4
+218,NULL,0,60,"2024-06-23",4
+219,NULL,0,60,"2024-06-30",4
+220,NULL,0,60,"2024-07-07",4
+221,NULL,0,60,"2024-07-14",4
+222,NULL,0,60,"2024-07-21",4
+223,NULL,0,60,"2024-07-28",4
+224,NULL,0,60,"2024-08-04",4
+225,NULL,0,60,"2024-08-11",4
+226,NULL,0,60,"2024-08-18",4
+227,NULL,0,60,"2024-08-25",4
+228,NULL,0,60,"2024-09-01",4
+229,NULL,0,60,"2024-09-08",4
+230,NULL,0,60,"2024-09-15",4
+231,NULL,0,60,"2024-09-22",4
+232,NULL,0,60,"2024-09-29",4
+233,NULL,50,100,"2024-06-04",5
+234,NULL,50,100,"2024-06-11",5
+235,NULL,50,100,"2024-06-18",5
+236,NULL,50,100,"2024-06-25",5
+237,NULL,50,100,"2024-07-02",5
+238,NULL,50,100,"2024-07-09",5
+239,NULL,50,100,"2024-07-16",5
+240,NULL,50,100,"2024-07-23",5
+241,NULL,50,100,"2024-07-30",5
+242,NULL,50,100,"2024-08-06",5
+243,NULL,50,100,"2024-08-13",5
+244,NULL,50,100,"2024-08-20",5
+245,NULL,50,100,"2024-08-27",5
+246,NULL,50,100,"2024-09-03",5
+247,NULL,50,100,"2024-09-10",5
+248,NULL,50,100,"2024-09-17",5
+249,NULL,50,100,"2024-09-24",5
+250,NULL,50,100,"2024-06-01",5
+251,NULL,50,100,"2024-06-08",5
+252,NULL,50,100,"2024-06-15",5
+253,NULL,50,100,"2024-06-22",5
+254,NULL,50,100,"2024-06-29",5
+255,NULL,50,100,"2024-07-06",5
+256,NULL,50,100,"2024-07-13",5
+257,NULL,50,100,"2024-07-20",5
+258,NULL,50,100,"2024-07-27",5
+259,NULL,50,100,"2024-08-03",5
+260,NULL,50,100,"2024-08-10",5
+261,NULL,50,100,"2024-08-17",5
+262,NULL,50,100,"2024-08-24",5
+263,NULL,50,100,"2024-08-31",5
+264,NULL,50,100,"2024-09-07",5
+265,NULL,50,100,"2024-09-14",5
+266,NULL,50,100,"2024-09-21",5
+267,NULL,50,100,"2024-09-28",5
+268,NULL,50,100,"2024-06-02",5
+269,NULL,50,100,"2024-06-09",5
+270,NULL,50,100,"2024-06-16",5
+271,NULL,50,100,"2024-06-23",5
+272,NULL,50,100,"2024-06-30",5
+273,NULL,50,100,"2024-07-07",5
+274,NULL,50,100,"2024-07-14",5
+275,NULL,50,100,"2024-07-21",5
+276,NULL,50,100,"2024-07-28",5
+277,NULL,50,100,"2024-08-04",5
+278,NULL,50,100,"2024-08-11",5
+279,NULL,50,100,"2024-08-18",5
+280,NULL,50,100,"2024-08-25",5
+281,NULL,50,100,"2024-09-01",5
+282,NULL,50,100,"2024-09-08",5
+283,NULL,50,100,"2024-09-15",5
+284,NULL,50,100,"2024-09-22",5
+285,NULL,50,100,"2024-09-29",5
+286,NULL,50,100,"2024-06-04",6
+287,NULL,50,100,"2024-06-11",6
+288,NULL,50,100,"2024-06-18",6
+289,NULL,50,100,"2024-06-25",6
+290,NULL,50,100,"2024-07-02",6
+291,NULL,50,100,"2024-07-09",6
+292,NULL,50,100,"2024-07-16",6
+293,NULL,50,100,"2024-07-23",6
+294,NULL,50,100,"2024-07-30",6
+295,NULL,50,100,"2024-08-06",6
+296,NULL,50,100,"2024-08-13",6
+297,NULL,50,100,"2024-08-20",6
+298,NULL,50,100,"2024-08-27",6
+299,NULL,50,100,"2024-09-03",6
+300,NULL,50,100,"2024-09-10",6
+301,NULL,50,100,"2024-09-17",6
+302,NULL,50,100,"2024-09-24",6
+303,NULL,50,100,"2024-06-01",6
+304,NULL,50,100,"2024-06-08",6
+305,NULL,50,100,"2024-06-15",6
+306,NULL,50,100,"2024-06-22",6
+307,NULL,50,100,"2024-06-29",6
+308,NULL,50,100,"2024-07-06",6
+309,NULL,50,100,"2024-07-13",6
+310,NULL,50,100,"2024-07-20",6
+311,NULL,50,100,"2024-07-27",6
+312,NULL,50,100,"2024-08-03",6
+313,NULL,50,100,"2024-08-10",6
+314,NULL,50,100,"2024-08-17",6
+315,NULL,50,100,"2024-08-24",6
+316,NULL,50,100,"2024-08-31",6
+317,NULL,50,100,"2024-09-07",6
+318,NULL,50,100,"2024-09-14",6
+319,NULL,50,100,"2024-09-21",6
+320,NULL,50,100,"2024-09-28",6
+321,NULL,50,100,"2024-06-02",6
+322,NULL,50,100,"2024-06-09",6
+323,NULL,50,100,"2024-06-16",6
+324,NULL,50,100,"2024-06-23",6
+325,NULL,50,100,"2024-06-30",6
+326,NULL,50,100,"2024-07-07",6
+327,NULL,50,100,"2024-07-14",6
+328,NULL,50,100,"2024-07-21",6
+329,NULL,50,100,"2024-07-28",6
+330,NULL,50,100,"2024-08-04",6
+331,NULL,50,100,"2024-08-11",6
+332,NULL,50,100,"2024-08-18",6
+333,NULL,50,100,"2024-08-25",6
+334,NULL,50,100,"2024-09-01",6
+335,NULL,50,100,"2024-09-08",6
+336,NULL,50,100,"2024-09-15",6
+337,NULL,50,100,"2024-09-22",6
+338,NULL,50,100,"2024-09-29",6
+339,NULL,50,100,"2024-06-04",7
+340,NULL,50,100,"2024-06-11",7
+341,NULL,50,100,"2024-06-18",7
+342,NULL,50,100,"2024-06-25",7
+343,NULL,50,100,"2024-07-02",7
+344,NULL,50,100,"2024-07-09",7
+345,NULL,50,100,"2024-07-16",7
+346,NULL,50,100,"2024-07-23",7
+347,NULL,50,100,"2024-07-30",7
+348,NULL,50,100,"2024-08-06",7
+349,NULL,50,100,"2024-08-13",7
+350,NULL,50,100,"2024-08-20",7
+351,NULL,50,100,"2024-08-27",7
+352,NULL,50,100,"2024-09-03",7
+353,NULL,50,100,"2024-09-10",7
+354,NULL,50,100,"2024-09-17",7
+355,NULL,50,100,"2024-09-24",7
+356,NULL,50,100,"2024-06-01",7
+357,NULL,50,100,"2024-06-08",7
+358,NULL,50,100,"2024-06-15",7
+359,NULL,50,100,"2024-06-22",7
+360,NULL,50,100,"2024-06-29",7
+361,NULL,50,100,"2024-07-06",7
+362,NULL,50,100,"2024-07-13",7
+363,NULL,50,100,"2024-07-20",7
+364,NULL,50,100,"2024-07-27",7
+365,NULL,50,100,"2024-08-03",7
+366,NULL,50,100,"2024-08-10",7
+367,NULL,50,100,"2024-08-17",7
+368,NULL,50,100,"2024-08-24",7
+369,NULL,50,100,"2024-08-31",7
+370,NULL,50,100,"2024-09-07",7
+371,NULL,50,100,"2024-09-14",7
+372,NULL,50,100,"2024-09-21",7
+373,NULL,50,100,"2024-09-28",7
+374,NULL,50,100,"2024-06-02",7
+375,NULL,50,100,"2024-06-09",7
+376,NULL,50,100,"2024-06-16",7
+377,NULL,50,100,"2024-06-23",7
+378,NULL,50,100,"2024-06-30",7
+379,NULL,50,100,"2024-07-07",7
+380,NULL,50,100,"2024-07-14",7
+381,NULL,50,100,"2024-07-21",7
+382,NULL,50,100,"2024-07-28",7
+383,NULL,50,100,"2024-08-04",7
+384,NULL,50,100,"2024-08-11",7
+385,NULL,50,100,"2024-08-18",7
+386,NULL,50,100,"2024-08-25",7
+387,NULL,50,100,"2024-09-01",7
+388,NULL,50,100,"2024-09-08",7
+389,NULL,50,100,"2024-09-15",7
+390,NULL,50,100,"2024-09-22",7
+391,NULL,50,100,"2024-09-29",7
+392,NULL,50,100,"2024-06-04",8
+393,NULL,50,100,"2024-06-11",8
+394,NULL,50,100,"2024-06-18",8
+395,NULL,50,100,"2024-06-25",8
+396,NULL,50,100,"2024-07-02",8
+397,NULL,50,100,"2024-07-09",8
+398,NULL,50,100,"2024-07-16",8
+399,NULL,50,100,"2024-07-23",8
+400,NULL,50,100,"2024-07-30",8
+401,NULL,50,100,"2024-08-06",8
+402,NULL,50,100,"2024-08-13",8
+403,NULL,50,100,"2024-08-20",8
+404,NULL,50,100,"2024-08-27",8
+405,NULL,50,100,"2024-09-03",8
+406,NULL,50,100,"2024-09-10",8
+407,NULL,50,100,"2024-09-17",8
+408,NULL,50,100,"2024-09-24",8
+409,NULL,50,100,"2024-06-01",8
+410,NULL,50,100,"2024-06-08",8
+411,NULL,50,100,"2024-06-15",8
+412,NULL,50,100,"2024-06-22",8
+413,NULL,50,100,"2024-06-29",8
+414,NULL,50,100,"2024-07-06",8
+415,NULL,50,100,"2024-07-13",8
+416,NULL,50,100,"2024-07-20",8
+417,NULL,50,100,"2024-07-27",8
+418,NULL,50,100,"2024-08-03",8
+419,NULL,50,100,"2024-08-10",8
+420,NULL,50,100,"2024-08-17",8
+421,NULL,50,100,"2024-08-24",8
+422,NULL,50,100,"2024-08-31",8
+423,NULL,50,100,"2024-09-07",8
+424,NULL,50,100,"2024-09-14",8
+425,NULL,50,100,"2024-09-21",8
+426,NULL,50,100,"2024-09-28",8
+427,NULL,50,100,"2024-06-02",8
+428,NULL,50,100,"2024-06-09",8
+429,NULL,50,100,"2024-06-16",8
+430,NULL,50,100,"2024-06-23",8
+431,NULL,50,100,"2024-06-30",8
+432,NULL,50,100,"2024-07-07",8
+433,NULL,50,100,"2024-07-14",8
+434,NULL,50,100,"2024-07-21",8
+435,NULL,50,100,"2024-07-28",8
+436,NULL,50,100,"2024-08-04",8
+437,NULL,50,100,"2024-08-11",8
+438,NULL,50,100,"2024-08-18",8
+439,NULL,50,100,"2024-08-25",8
+440,NULL,50,100,"2024-09-01",8
+441,NULL,50,100,"2024-09-08",8
+442,NULL,50,100,"2024-09-15",8
+443,NULL,50,100,"2024-09-22",8
+444,NULL,50,100,"2024-09-29",8
+445,NULL,0,50,"2023-12-18",9
+446,NULL,0,50,"2023-12-25",9
+447,NULL,0,50,"2024-01-01",9
+448,NULL,0,50,"2024-01-08",9
+449,NULL,0,50,"2024-01-15",9
+450,NULL,0,50,"2024-01-22",9
+451,NULL,0,50,"2024-01-29",9
+452,NULL,0,50,"2024-02-05",9
+453,NULL,0,50,"2024-02-12",9
+454,NULL,0,50,"2024-02-19",9
+455,NULL,0,50,"2024-02-26",9
+456,NULL,0,75,"2023-11-20",10
+457,NULL,0,75,"2023-11-27",10
+458,NULL,0,75,"2023-12-04",10
+459,NULL,0,75,"2023-12-11",10
+460,NULL,0,75,"2023-12-18",10
+461,NULL,0,75,"2023-12-25",10
+462,NULL,0,75,"2024-01-01",10
+463,NULL,0,75,"2024-01-08",10
+464,NULL,0,75,"2024-01-15",10
+465,NULL,0,75,"2024-01-22",10
+466,NULL,0,75,"2024-01-29",10
+467,NULL,0,75,"2023-11-20",11
+468,NULL,0,75,"2023-11-27",11
+469,NULL,0,75,"2023-12-04",11
+470,NULL,0,75,"2023-12-11",11
+471,NULL,0,75,"2023-12-18",11
+472,NULL,0,75,"2023-12-25",11
+473,NULL,0,75,"2024-01-01",11
+474,NULL,0,75,"2024-01-08",11
+475,NULL,0,75,"2024-01-15",11
+476,NULL,0,75,"2024-01-22",11
+477,NULL,0,75,"2024-01-29",11
+478,NULL,50,150,"2024-05-18",13
+479,NULL,50,150,"2024-05-25",13
+480,NULL,50,150,"2024-06-01",13
+481,NULL,50,150,"2024-06-08",13
+482,NULL,50,150,"2024-06-15",13
+483,NULL,50,150,"2024-06-22",13
+484,NULL,50,150,"2024-06-29",13
+485,NULL,50,150,"2024-07-06",13
+486,NULL,50,150,"2024-07-13",13
+487,NULL,50,150,"2024-07-20",13
+488,NULL,50,150,"2024-07-27",13
+489,NULL,50,150,"2024-08-03",13
+490,NULL,50,150,"2024-08-10",13
+491,NULL,50,150,"2024-08-17",13
+492,NULL,50,150,"2024-08-24",13
+493,NULL,50,150,"2024-08-31",13
+494,NULL,50,150,"2024-09-07",13
+495,NULL,50,150,"2024-09-14",13
+496,NULL,50,100,"2024-09-23",15
+497,NULL,50,100,"2024-09-30",15
+498,NULL,50,100,"2024-10-07",15
+499,NULL,50,100,"2024-10-14",15
+500,"canc",0,0,"2024-10-21",15
+501,NULL,50,100,"2024-10-28",15
+502,NULL,50,100,"2024-11-04",15
+503,NULL,50,100,"2024-11-11",15
+504,NULL,50,100,"2024-11-18",15
+505,NULL,50,100,"2024-11-25",15
+506,NULL,50,100,"2024-12-02",15
+507,NULL,50,100,"2024-09-24",15
+508,NULL,50,100,"2024-10-01",15
+509,NULL,50,100,"2024-10-08",15
+510,NULL,50,100,"2024-10-15",15
+511,NULL,50,100,"2024-10-22",15
+512,NULL,50,100,"2024-10-29",15
+513,NULL,50,100,"2024-11-05",15
+514,NULL,50,100,"2024-11-12",15
+515,NULL,50,100,"2024-11-19",15
+516,NULL,50,100,"2024-11-26",15
+517,NULL,50,100,"2024-12-03",15
+518,NULL,50,100,"2024-09-25",15
+519,NULL,50,100,"2024-10-02",15
+520,NULL,50,100,"2024-10-09",15
+521,NULL,50,100,"2024-10-16",15
+522,NULL,50,100,"2024-10-23",15
+523,NULL,50,100,"2024-10-30",15
+524,NULL,50,100,"2024-11-06",15
+525,NULL,50,100,"2024-11-13",15
+526,NULL,50,100,"2024-11-20",15
+527,NULL,50,100,"2024-11-27",15
+528,NULL,50,100,"2024-12-04",15
+529,NULL,50,100,"2024-09-26",15
+530,NULL,50,100,"2024-10-03",15
+531,NULL,50,100,"2024-10-10",15
+532,NULL,50,100,"2024-10-17",15
+533,NULL,50,100,"2024-10-24",15
+534,NULL,50,100,"2024-10-31",15
+535,NULL,50,100,"2024-11-07",15
+536,NULL,50,100,"2024-11-14",15
+537,NULL,50,100,"2024-11-21",15
+538,NULL,50,100,"2024-11-28",15
+539,NULL,50,100,"2024-12-05",15
+540,NULL,50,100,"2024-09-20",15
+541,NULL,50,100,"2024-09-27",15
+542,NULL,50,100,"2024-10-04",15
+543,NULL,50,100,"2024-10-11",15
+544,NULL,50,100,"2024-10-18",15
+545,NULL,50,100,"2024-10-25",15
+546,NULL,50,100,"2024-11-01",15
+547,NULL,50,100,"2024-11-08",15
+548,NULL,50,100,"2024-11-15",15
+549,NULL,50,100,"2024-11-22",15
+550,NULL,50,100,"2024-11-29",15
+551,NULL,50,100,"2024-12-06",15
+552,NULL,0,50,"2024-03-25",16
+553,NULL,0,50,"2024-04-01",16
+554,NULL,0,50,"2024-04-08",16
+555,NULL,0,50,"2024-04-15",16
+556,NULL,0,50,"2024-04-22",16
+557,NULL,0,50,"2024-04-29",16
+558,NULL,0,50,"2024-05-06",16
+559,NULL,0,50,"2024-05-13",16
+560,NULL,0,50,"2024-05-20",16
+561,NULL,0,50,"2024-03-27",16
+562,NULL,0,50,"2024-04-03",16
+563,NULL,0,50,"2024-04-10",16
+564,NULL,0,50,"2024-04-17",16
+565,NULL,0,50,"2024-04-24",16
+566,NULL,0,50,"2024-05-01",16
+567,NULL,0,50,"2024-05-08",16
+568,NULL,0,50,"2024-05-15",16
+569,NULL,0,50,"2024-03-22",16
+570,NULL,0,50,"2024-03-29",16
+571,NULL,0,50,"2024-04-05",16
+572,NULL,0,50,"2024-04-12",16
+573,NULL,0,50,"2024-04-19",16
+574,NULL,0,50,"2024-04-26",16
+575,NULL,0,50,"2024-05-03",16
+576,NULL,0,50,"2024-05-10",16
+577,NULL,0,50,"2024-05-17",16
+578,NULL,50,150,"2024-06-01",17
+579,NULL,50,150,"2024-06-08",17
+580,NULL,50,150,"2024-06-15",17
+581,NULL,50,150,"2024-06-22",17
+582,NULL,50,150,"2024-06-29",17
+583,NULL,50,150,"2024-07-06",17
+584,NULL,50,150,"2024-07-13",17
+585,NULL,50,150,"2024-07-20",17
+586,NULL,50,150,"2024-07-27",17
+587,NULL,50,150,"2024-08-03",17
+588,NULL,50,150,"2024-08-10",17
+589,NULL,50,150,"2024-08-17",17
+590,NULL,50,150,"2024-08-24",17
+591,NULL,50,150,"2024-08-31",17
+592,NULL,50,150,"2024-09-07",17
+593,NULL,50,150,"2024-09-14",17
+594,NULL,50,150,"2024-09-21",17
+595,NULL,50,150,"2024-09-28",17
+596,NULL,50,150,"2024-06-02",17
+597,NULL,50,150,"2024-06-09",17
+598,NULL,50,150,"2024-06-16",17
+599,NULL,50,150,"2024-06-23",17
+600,NULL,50,150,"2024-06-30",17
+601,NULL,50,150,"2024-07-07",17
+602,NULL,50,150,"2024-07-14",17
+603,NULL,50,150,"2024-07-21",17
+604,NULL,50,150,"2024-07-28",17
+605,NULL,50,150,"2024-08-04",17
+606,NULL,50,150,"2024-08-11",17
+607,NULL,50,150,"2024-08-18",17
+608,NULL,50,150,"2024-08-25",17
+609,NULL,50,150,"2024-09-01",17
+610,NULL,50,150,"2024-09-08",17
+611,NULL,50,150,"2024-09-15",17
+612,NULL,50,150,"2024-09-22",17
+613,NULL,50,150,"2024-09-29",17
+614,NULL,0,50,"2024-02-05",18
+615,NULL,0,50,"2024-02-12",18
+616,NULL,0,50,"2024-02-19",18
+617,NULL,0,50,"2024-02-26",18
+618,NULL,0,50,"2024-03-04",18
+619,NULL,0,50,"2024-03-11",18
+620,NULL,0,50,"2024-03-18",18
+621,NULL,0,50,"2024-03-25",18
+622,NULL,0,50,"2024-04-01",18
+623,NULL,0,50,"2024-04-08",18
+624,NULL,0,50,"2024-04-15",18
+625,NULL,0,50,"2024-04-22",18
+626,NULL,0,50,"2024-04-29",18
+627,NULL,0,50,"2024-05-06",18
+628,NULL,0,50,"2024-05-13",18
+629,NULL,0,50,"2024-05-20",18
+630,NULL,0,50,"2024-05-27",18
+631,NULL,0,50,"2024-06-03",18
+632,NULL,0,50,"2024-06-10",18
+633,NULL,0,50,"2024-06-17",18
+634,NULL,0,50,"2024-06-24",18
+635,NULL,0,50,"2024-07-01",18
+636,NULL,0,50,"2024-07-08",18
+637,NULL,0,50,"2024-07-15",18
+638,NULL,0,50,"2024-07-22",18
+639,NULL,0,50,"2024-07-29",18
+640,NULL,0,50,"2024-08-05",18
+641,NULL,0,50,"2024-08-12",18
+642,NULL,0,50,"2024-08-19",18
+643,NULL,0,50,"2024-08-26",18
+644,NULL,0,50,"2024-09-02",18
+645,NULL,0,50,"2024-09-09",18
+646,NULL,0,50,"2024-09-16",18
+647,NULL,0,50,"2024-09-23",18
+648,NULL,0,50,"2024-09-30",18
+649,NULL,0,50,"2024-01-31",18
+650,NULL,0,50,"2024-02-07",18
+651,NULL,0,50,"2024-02-14",18
+652,NULL,0,50,"2024-02-21",18
+653,NULL,0,50,"2024-02-28",18
+654,NULL,0,50,"2024-03-06",18
+655,NULL,0,50,"2024-03-13",18
+656,NULL,0,50,"2024-03-20",18
+657,NULL,0,50,"2024-03-27",18
+658,NULL,0,50,"2024-04-03",18
+659,NULL,0,50,"2024-04-10",18
+660,NULL,0,50,"2024-04-17",18
+661,NULL,0,50,"2024-04-24",18
+662,NULL,0,50,"2024-05-01",18
+663,NULL,0,50,"2024-05-08",18
+664,NULL,0,50,"2024-05-15",18
+665,NULL,0,50,"2024-05-22",18
+666,NULL,0,50,"2024-05-29",18
+667,NULL,0,50,"2024-06-05",18
+668,NULL,0,50,"2024-06-12",18
+669,NULL,0,50,"2024-06-19",18
+670,NULL,0,50,"2024-06-26",18
+671,NULL,0,50,"2024-07-03",18
+672,NULL,0,50,"2024-07-10",18
+673,NULL,0,50,"2024-07-17",18
+674,NULL,0,50,"2024-07-24",18
+675,NULL,0,50,"2024-07-31",18
+676,NULL,0,50,"2024-08-07",18
+677,NULL,0,50,"2024-08-14",18
+678,NULL,0,50,"2024-08-21",18
+679,NULL,0,50,"2024-08-28",18
+680,NULL,0,50,"2024-09-04",18
+681,NULL,0,50,"2024-09-11",18
+682,NULL,0,50,"2024-09-18",18
+683,NULL,0,50,"2024-09-25",18
+684,NULL,0,50,"2024-02-01",18
+685,NULL,0,50,"2024-02-08",18
+686,NULL,0,50,"2024-02-15",18
+687,NULL,0,50,"2024-02-22",18
+688,NULL,0,50,"2024-02-29",18
+689,NULL,0,50,"2024-03-07",18
+690,NULL,0,50,"2024-03-14",18
+691,NULL,0,50,"2024-03-21",18
+692,NULL,0,50,"2024-03-28",18
+693,NULL,0,50,"2024-04-04",18
+694,NULL,0,50,"2024-04-11",18
+695,NULL,0,50,"2024-04-18",18
+696,NULL,0,50,"2024-04-25",18
+697,NULL,0,50,"2024-05-02",18
+698,NULL,0,50,"2024-05-09",18
+699,NULL,0,50,"2024-05-16",18
+700,NULL,0,50,"2024-05-23",18
+701,NULL,0,50,"2024-05-30",18
+702,NULL,0,50,"2024-06-06",18
+703,NULL,0,50,"2024-06-13",18
+704,NULL,0,50,"2024-06-20",18
+705,NULL,0,50,"2024-06-27",18
+706,NULL,0,50,"2024-07-04",18
+707,NULL,0,50,"2024-07-11",18
+708,NULL,0,50,"2024-07-18",18
+709,NULL,0,50,"2024-07-25",18
+710,NULL,0,50,"2024-08-01",18
+711,NULL,0,50,"2024-08-08",18
+712,NULL,0,50,"2024-08-15",18
+713,NULL,0,50,"2024-08-22",18
+714,NULL,0,50,"2024-08-29",18
+715,NULL,0,50,"2024-09-05",18
+716,NULL,0,50,"2024-09-12",18
+717,NULL,0,50,"2024-09-19",18
+718,NULL,0,50,"2024-09-26",18
+719,NULL,0,50,"2024-02-03",18
+720,NULL,0,50,"2024-02-10",18
+721,NULL,0,50,"2024-02-17",18
+722,NULL,0,50,"2024-02-24",18
+723,NULL,0,50,"2024-03-02",18
+724,NULL,0,50,"2024-03-09",18
+725,NULL,0,50,"2024-03-16",18
+726,NULL,0,50,"2024-03-23",18
+727,NULL,0,50,"2024-03-30",18
+728,NULL,0,50,"2024-04-06",18
+729,NULL,0,50,"2024-04-13",18
+730,NULL,0,50,"2024-04-20",18
+731,NULL,0,50,"2024-04-27",18
+732,NULL,0,50,"2024-05-04",18
+733,NULL,0,50,"2024-05-11",18
+734,NULL,0,50,"2024-05-18",18
+735,NULL,0,50,"2024-05-25",18
+736,NULL,0,50,"2024-06-01",18
+737,NULL,0,50,"2024-06-08",18
+738,NULL,0,50,"2024-06-15",18
+739,NULL,0,50,"2024-06-22",18
+740,NULL,0,50,"2024-06-29",18
+741,NULL,0,50,"2024-07-06",18
+742,NULL,0,50,"2024-07-13",18
+743,NULL,0,50,"2024-07-20",18
+744,NULL,0,50,"2024-07-27",18
+745,NULL,0,50,"2024-08-03",18
+746,NULL,0,50,"2024-08-10",18
+747,NULL,0,50,"2024-08-17",18
+748,NULL,0,50,"2024-08-24",18
+749,NULL,0,50,"2024-08-31",18
+750,NULL,0,50,"2024-09-07",18
+751,NULL,0,50,"2024-09-14",18
+752,NULL,0,50,"2024-09-21",18
+753,NULL,0,50,"2024-09-28",18
+754,NULL,0,50,"2024-02-04",18
+755,NULL,0,50,"2024-02-11",18
+756,NULL,0,50,"2024-02-18",18
+757,NULL,0,50,"2024-02-25",18
+758,NULL,0,50,"2024-03-03",18
+759,NULL,0,50,"2024-03-10",18
+760,NULL,0,50,"2024-03-17",18
+761,NULL,0,50,"2024-03-24",18
+762,NULL,0,50,"2024-03-31",18
+763,NULL,0,50,"2024-04-07",18
+764,NULL,0,50,"2024-04-14",18
+765,NULL,0,50,"2024-04-21",18
+766,NULL,0,50,"2024-04-28",18
+767,NULL,0,50,"2024-05-05",18
+768,NULL,0,50,"2024-05-12",18
+769,NULL,0,50,"2024-05-19",18
+770,NULL,0,50,"2024-05-26",18
+771,NULL,0,50,"2024-06-02",18
+772,NULL,0,50,"2024-06-09",18
+773,NULL,0,50,"2024-06-16",18
+774,NULL,0,50,"2024-06-23",18
+775,NULL,0,50,"2024-06-30",18
+776,NULL,0,50,"2024-07-07",18
+777,NULL,0,50,"2024-07-14",18
+778,NULL,0,50,"2024-07-21",18
+779,NULL,0,50,"2024-07-28",18
+780,NULL,0,50,"2024-08-04",18
+781,NULL,0,50,"2024-08-11",18
+782,NULL,0,50,"2024-08-18",18
+783,NULL,0,50,"2024-08-25",18
+784,NULL,0,50,"2024-09-01",18
+785,NULL,0,50,"2024-09-08",18
+786,NULL,0,50,"2024-09-15",18
+787,NULL,0,50,"2024-09-22",18
+788,NULL,0,50,"2024-09-29",18
+789,NULL,50,150,"2024-02-05",19
+790,NULL,50,150,"2024-02-12",19
+791,NULL,50,150,"2024-02-19",19
+792,NULL,50,150,"2024-02-26",19
+793,NULL,50,150,"2024-03-04",19
+794,NULL,50,150,"2024-03-11",19
+795,NULL,50,150,"2024-03-18",19
+796,NULL,50,150,"2024-03-25",19
+797,NULL,50,150,"2024-04-01",19
+798,NULL,50,150,"2024-04-08",19
+799,NULL,50,150,"2024-04-15",19
+800,NULL,50,150,"2024-04-22",19
+801,NULL,50,150,"2024-04-29",19
+802,NULL,50,150,"2024-05-06",19
+803,NULL,50,150,"2024-05-13",19
+804,NULL,50,150,"2024-05-20",19
+805,NULL,50,150,"2024-05-27",19
+806,NULL,50,150,"2024-06-03",19
+807,NULL,50,150,"2024-06-10",19
+808,NULL,50,150,"2024-06-17",19
+809,NULL,50,150,"2024-06-24",19
+810,NULL,50,150,"2024-07-01",19
+811,NULL,50,150,"2024-07-08",19
+812,NULL,50,150,"2024-07-15",19
+813,NULL,50,150,"2024-07-22",19
+814,NULL,50,150,"2024-07-29",19
+815,NULL,50,150,"2024-08-05",19
+816,NULL,50,150,"2024-08-12",19
+817,NULL,50,150,"2024-08-19",19
+818,NULL,50,150,"2024-08-26",19
+819,NULL,50,150,"2024-09-02",19
+820,NULL,50,150,"2024-09-09",19
+821,NULL,50,150,"2024-09-16",19
+822,NULL,50,150,"2024-09-23",19
+823,NULL,50,150,"2024-09-30",19
+824,NULL,50,150,"2024-01-31",19
+825,NULL,50,150,"2024-02-07",19
+826,NULL,50,150,"2024-02-14",19
+827,NULL,50,150,"2024-02-21",19
+828,NULL,50,150,"2024-02-28",19
+829,NULL,50,150,"2024-03-06",19
+830,NULL,50,150,"2024-03-13",19
+831,NULL,50,150,"2024-03-20",19
+832,NULL,50,150,"2024-03-27",19
+833,NULL,50,150,"2024-04-03",19
+834,NULL,50,150,"2024-04-10",19
+835,NULL,50,150,"2024-04-17",19
+836,NULL,50,150,"2024-04-24",19
+837,NULL,50,150,"2024-05-01",19
+838,NULL,50,150,"2024-05-08",19
+839,NULL,50,150,"2024-05-15",19
+840,NULL,50,150,"2024-05-22",19
+841,NULL,50,150,"2024-05-29",19
+842,NULL,50,150,"2024-06-05",19
+843,NULL,50,150,"2024-06-12",19
+844,NULL,50,150,"2024-06-19",19
+845,NULL,50,150,"2024-06-26",19
+846,NULL,50,150,"2024-07-03",19
+847,NULL,50,150,"2024-07-10",19
+848,NULL,50,150,"2024-07-17",19
+849,NULL,50,150,"2024-07-24",19
+850,NULL,50,150,"2024-07-31",19
+851,NULL,50,150,"2024-08-07",19
+852,NULL,50,150,"2024-08-14",19
+853,NULL,50,150,"2024-08-21",19
+854,NULL,50,150,"2024-08-28",19
+855,NULL,50,150,"2024-09-04",19
+856,NULL,50,150,"2024-09-11",19
+857,NULL,50,150,"2024-09-18",19
+858,NULL,50,150,"2024-09-25",19
+859,NULL,50,150,"2024-02-01",19
+860,NULL,50,150,"2024-02-08",19
+861,NULL,50,150,"2024-02-15",19
+862,NULL,50,150,"2024-02-22",19
+863,NULL,50,150,"2024-02-29",19
+864,NULL,50,150,"2024-03-07",19
+865,NULL,50,150,"2024-03-14",19
+866,NULL,50,150,"2024-03-21",19
+867,NULL,50,150,"2024-03-28",19
+868,NULL,50,150,"2024-04-04",19
+869,NULL,50,150,"2024-04-11",19
+870,NULL,50,150,"2024-04-18",19
+871,NULL,50,150,"2024-04-25",19
+872,NULL,50,150,"2024-05-02",19
+873,NULL,50,150,"2024-05-09",19
+874,NULL,50,150,"2024-05-16",19
+875,NULL,50,150,"2024-05-23",19
+876,NULL,50,150,"2024-05-30",19
+877,NULL,50,150,"2024-06-06",19
+878,NULL,50,150,"2024-06-13",19
+879,NULL,50,150,"2024-06-20",19
+880,NULL,50,150,"2024-06-27",19
+881,NULL,50,150,"2024-07-04",19
+882,NULL,50,150,"2024-07-11",19
+883,NULL,50,150,"2024-07-18",19
+884,NULL,50,150,"2024-07-25",19
+885,NULL,50,150,"2024-08-01",19
+886,NULL,50,150,"2024-08-08",19
+887,NULL,50,150,"2024-08-15",19
+888,NULL,50,150,"2024-08-22",19
+889,NULL,50,150,"2024-08-29",19
+890,NULL,50,150,"2024-09-05",19
+891,NULL,50,150,"2024-09-12",19
+892,NULL,50,150,"2024-09-19",19
+893,NULL,50,150,"2024-09-26",19
+894,NULL,50,150,"2024-02-03",19
+895,NULL,50,150,"2024-02-10",19
+896,NULL,50,150,"2024-02-17",19
+897,NULL,50,150,"2024-02-24",19
+898,NULL,50,150,"2024-03-02",19
+899,NULL,50,150,"2024-03-09",19
+900,NULL,50,150,"2024-03-16",19
+901,NULL,50,150,"2024-03-23",19
+902,NULL,50,150,"2024-03-30",19
+903,NULL,50,150,"2024-04-06",19
+904,NULL,50,150,"2024-04-13",19
+905,NULL,50,150,"2024-04-20",19
+906,NULL,50,150,"2024-04-27",19
+907,NULL,50,150,"2024-05-04",19
+908,NULL,50,150,"2024-05-11",19
+909,NULL,50,150,"2024-05-18",19
+910,NULL,50,150,"2024-05-25",19
+911,NULL,50,150,"2024-06-01",19
+912,NULL,50,150,"2024-06-08",19
+913,NULL,50,150,"2024-06-15",19
+914,NULL,50,150,"2024-06-22",19
+915,NULL,50,150,"2024-06-29",19
+916,NULL,50,150,"2024-07-06",19
+917,NULL,50,150,"2024-07-13",19
+918,NULL,50,150,"2024-07-20",19
+919,NULL,50,150,"2024-07-27",19
+920,NULL,50,150,"2024-08-03",19
+921,NULL,50,150,"2024-08-10",19
+922,NULL,50,150,"2024-08-17",19
+923,NULL,50,150,"2024-08-24",19
+924,NULL,50,150,"2024-08-31",19
+925,NULL,50,150,"2024-09-07",19
+926,NULL,50,150,"2024-09-14",19
+927,NULL,50,150,"2024-09-21",19
+928,NULL,50,150,"2024-09-28",19
+929,NULL,50,150,"2024-02-04",19
+930,NULL,50,150,"2024-02-11",19
+931,NULL,50,150,"2024-02-18",19
+932,NULL,50,150,"2024-02-25",19
+933,NULL,50,150,"2024-03-03",19
+934,NULL,50,150,"2024-03-10",19
+935,NULL,50,150,"2024-03-17",19
+936,NULL,50,150,"2024-03-24",19
+937,NULL,50,150,"2024-03-31",19
+938,NULL,50,150,"2024-04-07",19
+939,NULL,50,150,"2024-04-14",19
+940,NULL,50,150,"2024-04-21",19
+941,NULL,50,150,"2024-04-28",19
+942,NULL,50,150,"2024-05-05",19
+943,NULL,50,150,"2024-05-12",19
+944,NULL,50,150,"2024-05-19",19
+945,NULL,50,150,"2024-05-26",19
+946,NULL,50,150,"2024-06-02",19
+947,NULL,50,150,"2024-06-09",19
+948,NULL,50,150,"2024-06-16",19
+949,NULL,50,150,"2024-06-23",19
+950,NULL,50,150,"2024-06-30",19
+951,NULL,50,150,"2024-07-07",19
+952,NULL,50,150,"2024-07-14",19
+953,NULL,50,150,"2024-07-21",19
+954,NULL,50,150,"2024-07-28",19
+955,NULL,50,150,"2024-08-04",19
+956,NULL,50,150,"2024-08-11",19
+957,NULL,50,150,"2024-08-18",19
+958,NULL,50,150,"2024-08-25",19
+959,NULL,50,150,"2024-09-01",19
+960,NULL,50,150,"2024-09-08",19
+961,NULL,50,150,"2024-09-15",19
+962,NULL,50,150,"2024-09-22",19
+963,NULL,50,150,"2024-09-29",19
