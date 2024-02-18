@@ -6,8 +6,8 @@ Il database allegato nei file SQL andrebbe importato su PostgreSQL attraverso la
 4. Copiare il percorso file ed eseguire il comando "cd" sulla linea di comando col percorso file come argomento. (Es. cd C:\Program Files\PostgreSQL\15\bin);
 5. Eseguire il comando "psql" con la sintassi "psql -h localhost -d database -U myuser -f path", dove database va rimpiazzato col database in cui importare il codice su Postgre, l'utente è l'utente in utilizzo su postgres, 
 mentre path è il percorso dele file SQL;
- 5.5 Qualora psql non dovesse funzionare, utilizzare invece il comando "pg_dump" con la sintassi: 
-     "pg_dump -h localhost -U nome_utente -d nome_database -F c -f /percorso/destinazione/dump_personalizzato.backup";
+ 5.5 Qualora psql non dovesse funzionare, utilizzare invece il comando "pg_restore" con la sintassi: 
+     "pg_restore -U nome_utente -d nome_database directory_file";
 6. In questo modo si sarà importato il DB nella sua interezza, già popolato;
 In caso di eventuali errori, questo readme conterrà tutto il codice - commentato - della struttura del database, così che nel peggiore dei casi lo si possa eseguire su Postgre, mentre il popolamento è contenuto in un ulteriore file SQL.
 
@@ -127,16 +127,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.corsa
     OWNER to postgres;
-
--- Trigger: imposta_disponibilita
-
--- DROP TRIGGER IF EXISTS imposta_disponibilita ON public.corsa;
-
-CREATE OR REPLACE TRIGGER imposta_disponibilita
-    AFTER INSERT
-    ON public.corsa
-    FOR EACH ROW
-    EXECUTE FUNCTION public.imposta_disponibilita();
 
 -- Trigger: modifica_ritardo
 
@@ -297,6 +287,10 @@ ALTER TABLE IF EXISTS public.indirizzosocial
     OWNER to postgres;
 
 
+-- FUNCTION: public.after_insert_prenotazione()
+
+-- DROP FUNCTION IF EXISTS public.after_insert_prenotazione();
+
 CREATE OR REPLACE FUNCTION public.after_insert_prenotazione()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -332,15 +326,11 @@ begin
 		from passeggero 
 		where idpasseggero = new.idpasseggero;
 		
-		-- nella variabile data_corsa viene memorizzata la data di inizio della cadenza giornaliera corrispondente
-		-- alla corsa specifica della prenotazione. Viene utilizzata per calcolare il sovrapprezzo della prenotazione
-		select datainizio into data_corsa 
-		from cadenzagiornaliera
-		where nomecadenzagiornaliera in (select nomecadenzagiornaliera 
-										 from tratta
-										 where idtratta in (select idtratta
-														   from corsa
-														   where idcorsa = new.idcorsa));
+		-- nella variabile data_corsa viene memorizzata la data del giorno in cui viene effettuata la corsa 
+		-- che si sta prenotando. Viene utilizzata per calcolare il sovrapprezzo della prenotazione
+		select giorno into data_corsa 
+		from corsa
+		where idcorsa = new.idcorsa;
 		
 		-- la funzione concat concatena una stringa ad un'altra separata da uno spazio
 		result_string := concat(nome_pass, ' ', cognome_pass);
@@ -422,7 +412,7 @@ begin
 	IF cod_natante is not null THEN
 		INSERT INTO navigazione VALUES (NEW.idtratta, cod_natante);
 	ELSE
-		RAISE EXCEPTION 'Nessun natante trovato per la compagnia di cui si vuole inserire la corsa';
+		RAISE EXCEPTION 'Nessun natante trovato per la compagnia di cui si vuole inserire la tratta";
 	END IF;
 	
     RETURN NEW;
@@ -435,6 +425,10 @@ ALTER FUNCTION public.aggiungi_navigazione()
 
 
 
+-- FUNCTION: public.diminuisci_disponibilita()
+
+-- DROP FUNCTION IF EXISTS public.diminuisci_disponibilita();
+
 CREATE OR REPLACE FUNCTION public.diminuisci_disponibilita()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -442,29 +436,19 @@ CREATE OR REPLACE FUNCTION public.diminuisci_disponibilita()
     VOLATILE NOT LEAKPROOF
 AS $BODY$
 begin
-	
-	UPDATE corsa
+
+    UPDATE corsa
     SET disponibilitapasseggero = disponibilitapasseggero - 1
     WHERE idcorsa = NEW.idcorsa;
-	
-	if new.auto = false then
-		update corsa
-		set disponibilitaauto = disponibilitaauto
-		where idcorsa = new.idcorsa;
-	else
-		update corsa
-		set disponibilitaauto = disponibilitaauto -1
-		where idcorsa = new.idcorsa;
-	end if;
-		
 
     RETURN NEW;
-		
+
 end;
 $BODY$;
 
 ALTER FUNCTION public.diminuisci_disponibilita()
     OWNER TO postgres;
+
 
 CREATE OR REPLACE FUNCTION public.elimina_prenotazione()
     RETURNS trigger
@@ -520,58 +504,7 @@ $BODY$;
 ALTER FUNCTION public.elimina_prenotazione()
     OWNER TO postgres;
 
-CREATE OR REPLACE FUNCTION public.imposta_disponibilita()
-    RETURNS trigger
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE NOT LEAKPROOF
-AS $BODY$
-declare
-	capienzap INTEGER; --capienza passeggeri
-	capienzaa INTEGER; --capienza automezzi
-	tipo_natante varchar(50); --tipo del natante
-begin
-	
-	-- Seleziona la capienza passeggeri, la capienza automezzi e il tipo del natante associato alla corsa
-	select capienzapasseggeri, tiponatante, capienzaautomezzi into capienzap, tipo_natante, capienzaa
-	from natante
-	where codnatante in (select codnatante
-						from navigazione
-						where idtratta in (select idtratta 
-										  from corsa
-										  where idcorsa = new.idcorsa));
-	
-	-- Verifica il tipo del natante e imposta la disponibilità della corsa di conseguenza
-	if tipo_natante = 'traghetto' then
-	
-        -- Se il natante è un traghetto, la disponibilità è data dalla somma della capienza passeggeri e automezzi
-		update corsa 
-		set disponibilitapasseggero = capienzap
-		where idcorsa = new.idcorsa;
-		
-		update corsa 
-		set disponibilitaauto = capienzaa
-		where idcorsa = new.idcorsa;
-		
-	else
-	
-        -- Altrimenti, la disponibilità è data solo dalla capienza passeggeri
-		update corsa
-		set disponibilitapasseggero = capienzap
-		where idcorsa = new.idcorsa;
-		
-		update corsa 
-		set disponibilitaauto = 0
-		where idcorsa = new.idcorsa;
-		
-	end if;
-		
-	return new;
-end;
-$BODY$;
 
-ALTER FUNCTION public.imposta_disponibilita()
-    OWNER TO postgres;
 
 CREATE OR REPLACE FUNCTION public.incrementa_numero_natanti()
     RETURNS trigger
@@ -591,6 +524,10 @@ $BODY$;
 
 ALTER FUNCTION public.incrementa_numero_natanti()
     OWNER TO postgres;
+
+-- FUNCTION: public.insert_into_corsa()
+
+-- DROP FUNCTION IF EXISTS public.insert_into_corsa();
 
 CREATE OR REPLACE FUNCTION public.insert_into_corsa()
     RETURNS trigger
@@ -621,23 +558,25 @@ BEGIN
                         where idtratta = new.idtratta);
 
     if tipo_natante = 'traghetto' then
-        -- Se il natante è un traghetto, la disponibilità è data dalla somma della capienza passeggeri e automezzi
+        -- Se il natante è un traghetto, la disponibilità dei passeggeri è settata alla capienza passeggeri,
+		-- mentre la disponibilità auto è data dalla capienza automezzi
         disponibilitapasseggero = capienzap;
         disponibilitaauto = capienzaa;
     else
-        -- Altrimenti, la disponibilità è data solo dalla capienza passeggeri
+        -- Altrimenti, la disponibilità auto è settata a 0
         disponibilitapasseggero = capienzap;
         disponibilitaauto = 0;
     end if;
     
+	-- seleziona la stringa contenente i giorni settimanali
 	select giornosettimanale into giornosett
 	from cadenzagiornaliera
 	where nomecadenzagiornaliera = new.nomecadenzagiornaliera;
 	
+	-- funzione che converte la stringa, separata da virgole, in array
 	giorni := string_to_array(giornosett, ', ');	
 	
 	-- questo loop assegna ad ogni iterazione il valore numerico del giorno della settimana di una data a "giorno"
-	
 	FOR i IN 1..array_length(giorni, 1) LOOP
         giorno := giorni[i];
 		giorno_numero := CASE
@@ -791,6 +730,10 @@ ALTER FUNCTION public.setta_sovrapprezzoprenotazione()
 
 
 
+-- FUNCTION: public.verifica_disponibilita_auto()
+
+-- DROP FUNCTION IF EXISTS public.verifica_disponibilita_auto();
+
 CREATE OR REPLACE FUNCTION public.verifica_disponibilita_auto()
     RETURNS trigger
     LANGUAGE 'plpgsql'
@@ -822,22 +765,25 @@ begin
 		raise exception 'I posti auto sono esauriti.';
 	end if;
 	
-	if new.auto = true and tipo <> 'traghetto' then
-		update prenotazione
-		set auto = false
-		where idcorsa = new.idcorsa;
-		
-		-- nel caso una prenotazione sia fatta su un tipo di nave che non ha posti auto, c'è un'exception:
-		raise exception 'Impossibile aggiungere l''auto, perchè l''imbarcazione non lo permette';
-		
-	elsif new.auto = false then
-	
-		update prenotazione
-		set auto = false
-		where idcorsa = new.idcorsa;
-		
+	if tipo = 'traghetto' then
+		if new.auto = true then
+			update corsa
+			set disponibilitaauto = disponibilitaauto - 1
+			where idcorsa = new.idcorsa;
+		else
+			update prenotazione 
+			set auto = false
+			where idcorsa = new.idcorsa and idpasseggero = new.idpasseggero;
+		end if;
+	else
+		if new.auto = true then
+			raise exception 'Impossibile aggiungere l''auto, perchè l''imbarcazione non lo permette';
+		else
+			update prenotazione 
+			set auto = false
+			where idcorsa = new.idcorsa and idpasseggero = new.idpasseggero;
+		end if;
 	end if;
-	
 	
 	return new;
 end;
